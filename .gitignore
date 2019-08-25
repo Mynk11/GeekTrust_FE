@@ -6,8 +6,8 @@
 /.pnp
 .pnp.js
 ./FE
-./src/Redux
-./public/robots.txt
+/src/Redux
+/public/robots.txt
 # testing
 /coverage
 
