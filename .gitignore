@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 ./FE
+./src/Redux
 # testing
 /coverage
 
