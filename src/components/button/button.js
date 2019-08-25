@@ -74,7 +74,7 @@ export default class Button extends Component {
                 <button onClick={() => {
                     this.onclick();
                 }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>find falcone!</button>
-                {this.state.result ? <Result></Result> : ""}
+                {this.state.result ? window.open('../result/result') : ""}
             </div>
 
         )

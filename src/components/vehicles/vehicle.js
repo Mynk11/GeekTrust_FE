@@ -33,6 +33,7 @@ function getVehiclesDetails(props) {
                     {props.vehicles.map((key, i) => {
                         return (<div key={uniqid()}>
                             <input
+                                defaultChecked={(spaceVehicle.hasOwnProperty("country" + index) && key.name === spaceVehicle["country" + index]) ? true : false}
                                 disabled={values.includes(key.name)}
                                 onChange={(e) => {
                                     changeRadio(e)

@@ -10,7 +10,7 @@ export default function DropDown(props) {
     const [sel, setSelected] = usePlanetState([]);
     const [count, setCount] = useState([0])
     useEffect(() => {
-        //console.log("Use effect is called");
+        console.log("Use effect is called", selected);
     }, [sel.length]);
 
     const changeSel = (e) => {
@@ -40,17 +40,24 @@ export default function DropDown(props) {
         <div className="row" key={uniqid()}>
             <div className="col-1" key={uniqid()}></div>
             {props.option.map(function (obj, i) {
+                //console.log("Obj===>", obj, selected);
                 if (i < 4) {
                     return (
                         <div className="col-2" key={uniqid()}>
-                            <div style={{ textAlign: "center" }}><b>Destination {++i}</b></div>
-                            <select onChange={(e) => { changeSel(e) }}
-                                typeof="select" className="form-control" name={"counrty" + i} placeholder="Country">
-                                <option defaultValue="select1" value="null">Select</option>
-                                {props.option.map((key, i) => {
+                            <div style={{ textAlign: "center" }}><b>Destination {i + 1}</b></div>
+                            <select
 
+                                value={(selected.hasOwnProperty("country" + i) && selected["country" + i] === obj) ? selected["country" + i] : ""}
+                                onChange={(e) => { changeSel(e) }}
+                                typeof="select" className="form-control" name={"country" + i} placeholder="Country">
+                                <option value="null">Select</option>
+                                {props.option.map((key) => {
+                                    console.log("From select", selected.hasOwnProperty("country" + i), selected["country" + i], obj);
                                     return (
-                                        <option disabled={countryVal.includes(key) ? true : false}
+                                        <option
+                                            value={key}
+                                            selected={(selected.hasOwnProperty("country" + i) && selected["country" + i] === key) ? true : false}
+                                            disabled={countryVal.includes(key) ? true : false}
                                             key={uniqid()}
                                         >
                                             {key}
