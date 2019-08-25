@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Footer from './components/footer/footer';
+import Header from './components/header/header';
+import GetPlanetsDetails from './components/planets/planets';
+import SearchButton from './components/button/button';
 
 function App() {
+  const [p, setP] = useState({});
+  const [v, setV] = useState({});
+  console.log("App .js", p, v);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" >
+      <Header></Header>
+      <GetPlanetsDetails p={setP} v={setV}></GetPlanetsDetails>
+      <SearchButton planets={p} vehicles={v}></SearchButton>
+      <Footer></Footer>
     </div>
   );
 }
