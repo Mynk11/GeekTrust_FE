@@ -9,7 +9,9 @@ function getVehiclesDetails(props) {
     const [num, setCount] = useState(0)
 
     useEffect(() => {
-        console.log("Use effect is called", selVehicles.length, selVehicles);
+
+
+
     }, [num]);
 
     const changeRadio = (e) => {
@@ -20,8 +22,8 @@ function getVehiclesDetails(props) {
             spaceVehicle[currentsel] = value;
             setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
-            props.v(values);
-            console.log("spaceVehicle", spaceVehicle, values);
+            props.selectedVehicles(values);
+
             setCount(num + 1);
         }
     }
@@ -29,7 +31,7 @@ function getVehiclesDetails(props) {
     if (props.vehicles.length > 0) {
         return props.vehicles.map((obj, index) => {
             return (
-                <div className="col-2 mt-2" key={uniqid()}>
+                <div key={uniqid()} className="col-2" style={{ visibility: props.selectedPlanet.includes("country" + index) ? "block" : "hidden" }}>
                     {props.vehicles.map((key, i) => {
                         return (<div key={uniqid()}>
                             <input
