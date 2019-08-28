@@ -6,26 +6,37 @@ export var values = [];
 function getVehiclesDetails(props) {
     console.log("props from get", props);
     const [selVehicles, setselVehicles] = useVehicleHook({});
-    const [num, setCount] = useState(0)
-
+    const [num, setCount] = useState(0);
     useEffect(() => {
 
-
+        //maxDistance = props.vehicles.map(key => key.max_distance);
+        //console.log("Distance", maxDistance);
 
     }, [num]);
 
     const changeRadio = (e) => {
-
+        //console.log("E==============>", e.target);
         var currentsel = e.currentTarget.name;
         var value = e.target.value;
+        var reachable = e.target.getAttribute("maxdistance");
+        var speed = e.target.getAttribute("speed");
+        console.log("Reahable=============>", props.objDistance[currentsel], reachable);
+        var reamainingTime = reachable / speed;
+        console.log("Remaining Time", reamainingTime);
+
+
         if (value !== null || value !== "null") {
             spaceVehicle[currentsel] = value;
+            props.setTime(reamainingTime);
             setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);
 
+
             setCount(num + 1);
         }
+
+
     }
 
     if (props.vehicles.length > 0) {
@@ -35,6 +46,8 @@ function getVehiclesDetails(props) {
                     {props.vehicles.map((key, i) => {
                         return (<div key={uniqid()}>
                             <input
+                                speed={key.speed}
+                                maxdistance={key.max_distance}
                                 defaultChecked={(spaceVehicle.hasOwnProperty("country" + index) && key.name === spaceVehicle["country" + index]) ? true : false}
                                 disabled={values.includes(key.name)}
                                 onChange={(e) => {

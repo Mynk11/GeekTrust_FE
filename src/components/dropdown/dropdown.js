@@ -6,12 +6,12 @@ import Timer from '../time/time';
 var uniqid = require('uniqid');
 var selected = {};
 export var countryVal = [];
+var objDistance = {};
 export default function DropDown(props) {
-
-
-    console.log("Props from Dropdown ::", props);
-    const [sel, setSelected] = usePlanetState([]);
-    const [count, setCount] = useState([0])
+    //console.log("Props from Dropdown ::", props);
+    const [sel, setSelected] = usePlanetState({});
+    const [count, setCount] = useState([0]);
+    const [time, setTime] = useState(0);
     useEffect(() => {
         //console.log("Use effect is called", selected);
     }, [count]);
@@ -20,12 +20,13 @@ export default function DropDown(props) {
 
         var currentsel = e.target.name;
         var value = e.target.value;
-
+        var distance = e.nativeEvent.target.selectedOptions[0].getAttribute("distance");
         if (value !== "null" || value !== null) {
             selected[currentsel] = value;
-            countryVal = Object.values(selected)
+            countryVal = Object.values(selected);
+            objDistance[currentsel] = distance;
             props.selectedPlanet(countryVal);
-            // console.log("Selected Obj", selected);
+            console.log("Selected Obj", selected, objDistance);
             setCount(count + 1);
             setSelected(selected);
             //console.log("Planet Name", selected, countryVal);
@@ -45,6 +46,7 @@ export default function DropDown(props) {
             <div className="row" key={uniqid()}>
                 <div className="col-1" key={uniqid()}></div>
                 {props.option.map(function (obj, i) {
+                    //console.log('Obj====>', obj);
 
                     if (i < 4) {
 
@@ -60,11 +62,12 @@ export default function DropDown(props) {
                                     {props.option.map((key) => {
                                         return (
                                             <option
-                                                value={key}
-                                                disabled={countryVal.includes(key) ? true : false}
+                                                distance={key.distance}
+                                                value={key.name}
+                                                disabled={countryVal.includes(key.name) ? true : false}
                                                 key={uniqid()}
                                             >
-                                                {key}
+                                                {key.name}
                                             </option>)
                                     })}
                                 </select>
@@ -90,7 +93,7 @@ export default function DropDown(props) {
 
                 <div className="col-2">
 
-                    <Timer Time={"2.00s"}></Timer>
+                    <Timer Time={time}></Timer>
                 </div>
 
 
@@ -101,6 +104,8 @@ export default function DropDown(props) {
             <div className="row pt-2">
                 <div className="col-1"></div>
                 <GetVehicleDetails
+                    setTime={setTime}
+                    objDistance={objDistance}
                     key={uniqid()}
                     vehicles={props.vehicles}
                     selectedVehicles={props.selectedVehicles}

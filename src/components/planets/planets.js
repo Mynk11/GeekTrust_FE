@@ -6,15 +6,17 @@ import GetVehicleDetails from '../vehicles/vehicle';
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
-    console.log("props from planets", props);
+    // console.log("props from planets", props);
+
+
 
     if (props.planets.length > 0) {
-        var planetArray = props.planets.map(key => { return key.name })
+        // var planetArray = props.planets.map(key => { return key.name })
 
         return (
             <div key={uniqid()}>
                 <DropDown key={uniqid()}
-                    option={planetArray}
+                    option={props.planets}
                     // vehicles={props.vehicles} 
                     selectedPlanet={props.selectedPlanet}
                     vehicles={props.vehicles}
