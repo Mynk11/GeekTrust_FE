@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DropDown from '../dropdown/dropdown';
-
-import GetVehicleDetails from '../vehicles/vehicle';
 
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
-    // console.log("props from planets", props);
-
-
-
+    const [time, setTime] = useState(0);
     if (props.planets.length > 0) {
-        // var planetArray = props.planets.map(key => { return key.name })
+
 
         return (
             <div key={uniqid()}>
                 <DropDown key={uniqid()}
                     option={props.planets}
-                    // vehicles={props.vehicles} 
+                    time={time}
+                    setTime={setTime}
+
                     selectedPlanet={props.selectedPlanet}
                     vehicles={props.vehicles}
                     selectedVehicles={props.selectedVehicles}
@@ -30,14 +27,7 @@ function getPlanetsDetails(props) {
                     <div className="col-1" key={uniqid()}></div>
 
 
-                    {/*  <GetVehicleDetails
-                        key={uniqid()}
-                        vehicles={props.vehicles}
-                        selectedVehicles={props.selectedVehicles}
-                        selectedPlanet={props.selectedPlnts}
-                    >
 
-                    </GetVehicleDetails> */}
 
 
 

@@ -8,31 +8,35 @@ var selected = {};
 export var countryVal = [];
 var objDistance = {};
 export default function DropDown(props) {
-    //console.log("Props from Dropdown ::", props);
     const [sel, setSelected] = usePlanetState({});
     const [count, setCount] = useState([0]);
-    const [time, setTime] = useState(0);
+
+
     useEffect(() => {
-        //console.log("Use effect is called", selected);
+        //console.log("Time is====>", props.time);
     }, [count]);
 
     const changeSel = (e) => {
-
         var currentsel = e.target.name;
         var value = e.target.value;
         var distance = e.nativeEvent.target.selectedOptions[0].getAttribute("distance");
-        if (value !== "null" || value !== null) {
+        console.log("Value============>", value);
+        if (value !== "select") {
             selected[currentsel] = value;
             countryVal = Object.values(selected);
             objDistance[currentsel] = distance;
             props.selectedPlanet(countryVal);
-            console.log("Selected Obj", selected, objDistance);
-            setCount(count + 1);
+
             setSelected(selected);
-            //console.log("Planet Name", selected, countryVal);
-            //console.log("Current select", sel);
+            setCount(count + 1);
         } else {
-            console.log("please change the planet");
+            console.log("please change the planet", selected, currentsel);
+            delete selected[currentsel];
+            countryVal = Object.values(selected);
+            objDistance[currentsel] = distance;
+            console.log("====>", selected);
+            props.selectedPlanet(countryVal);
+
         }
 
 
@@ -58,7 +62,7 @@ export default function DropDown(props) {
                                     value={(selected.hasOwnProperty("country" + i) && selected["country" + i] !== "null") ? selected["country" + i] : ""}
                                     onChange={(e) => { changeSel(e) }}
                                     typeof="select" className="form-control dropdown-toggle" aria-labelledby="dropdownMenuButton" name={"country" + i} placeholder="Country">
-                                    <option value="null">Select</option>
+                                    <option value="select">Select</option>
                                     {props.option.map((key) => {
                                         return (
                                             <option
@@ -93,7 +97,7 @@ export default function DropDown(props) {
 
                 <div className="col-2">
 
-                    <Timer Time={time}></Timer>
+                    <Timer Time={props.time}></Timer>
                 </div>
 
 
@@ -104,7 +108,7 @@ export default function DropDown(props) {
             <div className="row pt-2">
                 <div className="col-1"></div>
                 <GetVehicleDetails
-                    setTime={setTime}
+                    setTime={props.setTime}
                     objDistance={objDistance}
                     key={uniqid()}
                     vehicles={props.vehicles}

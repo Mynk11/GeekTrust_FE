@@ -33,7 +33,7 @@ function App() {
 
 
   return (
-    <div className="App" >
+    <div className="App backgroundColor" >
       <Header></Header>
       <GetPlanetsDetails planets={planets} vehicles={vehicles} selectedPlanet={setSelectedPlanets}
         selectedVehicles={setSelectedVehicles}

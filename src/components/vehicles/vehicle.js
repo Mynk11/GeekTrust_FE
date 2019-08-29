@@ -7,32 +7,21 @@ function getVehiclesDetails(props) {
     console.log("props from get", props);
     const [selVehicles, setselVehicles] = useVehicleHook({});
     const [num, setCount] = useState(0);
-    useEffect(() => {
-
-        //maxDistance = props.vehicles.map(key => key.max_distance);
-        //console.log("Distance", maxDistance);
-
-    }, [num]);
 
     const changeRadio = (e) => {
-        //console.log("E==============>", e.target);
         var currentsel = e.currentTarget.name;
         var value = e.target.value;
         var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
-        console.log("Reahable=============>", props.objDistance[currentsel], reachable);
         var reamainingTime = reachable / speed;
-        console.log("Remaining Time", reamainingTime);
 
-
-        if (value !== null || value !== "null") {
+        if ((value !== null || value !== "null") && props.objDistance[currentsel]) {
+            console.log("After nulll", props.objDistance[currentsel]);
             spaceVehicle[currentsel] = value;
             props.setTime(reamainingTime);
             setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);
-
-
             setCount(num + 1);
         }
 
