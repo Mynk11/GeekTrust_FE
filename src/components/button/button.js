@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import "./button.css";
-import Result from '../result/result.js';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch, Route, Link } from 'react-router-dom';
+
+
 
 export default class Button extends Component {
     state = {
         result: false,
-        data: ""
+        data: null
     }
 
+
+
     onclick = (e) => {
-        //console.log("this=====>", this.props);
+        console.log("this=====>", this.props);
         var token = "";
         if (this.props.planets.length !== 4 && this.props.vehicles.length !== 4) {
             this.setState({ result: false })
@@ -41,14 +42,16 @@ export default class Button extends Component {
                         },
                         "body": JSON.stringify({
                             "token": token,
-                            "planet_names": ["Enchai", "Donlon", "Sapir", "Lerbin"],
-                            "vehicle_names": ["Space pod", "Space rocket", "Space rocket", "Space rocket"]
+                            "planet_names": this.props.planets,
+                            "vehicle_names": this.props.vehicles
                         })
                     }).then(res => {
                         console.log("Response", res.ok, res.json().then(data => {
                             console.log('Data  is--', data);
                             if (res.ok) {
-                                this.setState({ data });
+                                this.props.setResult('none');
+                                this.setState({ data: '/result' });
+                                //this.props.setResult(data);
                                 //alert(`Congratulations you find the Falcone on planet ${data.planet_name}`);
                             } else {
                                 alert(`Your prediction  to find Falcone is ${data.status}`);
@@ -70,30 +73,23 @@ export default class Button extends Component {
     }
 
     render() {
-        //console.log("from button===>", this.props);
+        console.log("Data=========>", this.state.data)
         return (
-<Router>
-<Link to="../result/result">
-            <div className={'user row text-center mt-5 may' + this.props.length}
-            >
 
-                <button disabled={this.props.planets.length < 4 ? true : false} onClick={() => {
-                    this.onclick();
-                }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>find falcone!
-                
+            <div className={'user row text-center mt-5 may'}>
+                <button
+                    disabled={this.props.planets.length < 4 ? true : false}
+                    onClick={() => {
+                        this.onclick();
+                    }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>
 
-                        <Switch>
-                            
-                            <Route path="../result/result" exact component={Result}>
-                                <Result data={this.state.data}></Result>
-                            </Route>
-                        </Switch>
-                    
+                    <a href={this.state.data}>find falcone!</a>
+
                 </button>
-                {/* {this.state.result ? window.open('../result/result') : ""} */}
+
+
             </div>
-</Link>
-</Router>
+
         )
     }
 }
