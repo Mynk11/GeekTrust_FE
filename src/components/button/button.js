@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./button.css";
-
-
+import Result from '../result/result';
+import { Link } from 'react-router-dom';
 
 
 export default class Button extends Component {
@@ -12,7 +12,7 @@ export default class Button extends Component {
     }
 
     check() {
-        console.log("Check is called", this.state.href);
+        console.log("Check is called", this.props);
         this.setState({ href: '/result' })
     }
 
@@ -53,13 +53,16 @@ export default class Button extends Component {
                     }).then(res => {
                         console.log("Response", res.ok, res.json().then(data => {
                             console.log('Data  is--', data);
+
                             if (res.ok) {
+
                                 this.props.setResult(data);
 
+                                //return <Result></Result>
                                 //this.props.setResult(data);
                                 //alert(`Congratulations you find the Falcone on planet ${data.planet_name}`);
                             } else {
-                                alert(`Your prediction  to find Falcone is ${data.status}`);
+                                alert(`${data.error}`);
                             }
                         }));
                     }).catch((err) => {
@@ -78,7 +81,7 @@ export default class Button extends Component {
     }
 
     render() {
-        console.log("Data=========>", this.state.data)
+        console.log("Button props=========>", this.props);
         return (
 
             <div className={'user row text-center mt-5 may'}>
@@ -88,7 +91,7 @@ export default class Button extends Component {
                         this.onclick();
                     }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>
 
-                    <a href={this.props.planets.length < 4 ? null : this.state.href}>find falcone!</a>
+                    <Link to={this.props.planets.length < 4 ? null : this.state.href}>find falcone!</Link>
 
                 </button>
 
