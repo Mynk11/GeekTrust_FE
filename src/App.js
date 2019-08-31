@@ -37,30 +37,27 @@ function App() {
     <div className="App " >
       <Header className="backgroundColor"></Header>
       <BrowserRouter>
-        <Route exact path="/" component={() => {
-          return (
-            <>
 
-              <GetPlanetsDetails
-                planets={planets}
-                vehicles={vehicles}
-                selectedPlanet={setSelectedPlanets}
-                selectedVehicles={setSelectedVehicles}
-                selectedPlnts={selectedPlanets}
-                selectedVehcle={selectedVehicles}
-              ></GetPlanetsDetails>
 
-              <SearchButton
-                planets={selectedPlanets}
-                vehicles={selectedVehicles}
-                setResult={setResult}
-              >
-              </SearchButton>
-            </>
-          )
-        }}></Route>
+        <GetPlanetsDetails
+          planets={planets}
+          vehicles={vehicles}
+          selectedPlanet={setSelectedPlanets}
+          selectedVehicles={setSelectedVehicles}
+          selectedPlnts={selectedPlanets}
+          selectedVehcle={selectedVehicles}
+        ></GetPlanetsDetails>
 
-        <Route exact path="/result" component={() => <Result></Result>}></Route>
+        <SearchButton
+          planets={selectedPlanets}
+          vehicles={selectedVehicles}
+          setResult={setResult}
+        >
+        </SearchButton>
+
+
+
+        <Route exact path="/result" component={() => <Result result={result}></Result>}></Route>
         <Footer>
         </Footer>
       </BrowserRouter>
