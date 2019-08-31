@@ -14,6 +14,7 @@ function App() {
   const [planets, setPlanets] = usePlanetState([]);
   const [vehicles, setVehicles] = useVehicleState([]);
   const [result, setResult] = useState("");
+  const [time, setTime] = useState(0);
   useEffect(() => {
     Promise.all([
       fetch("https://findfalcone.herokuapp.com/planets"),
@@ -49,6 +50,9 @@ function App() {
                 selectedVehicles={setSelectedVehicles}
                 selectedPlnts={selectedPlanets}
                 selectedVehcle={selectedVehicles}
+                time={time}
+
+                setTime={setTime}
               ></GetPlanetsDetails>
 
               <SearchButton
