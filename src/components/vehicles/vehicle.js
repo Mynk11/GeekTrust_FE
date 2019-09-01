@@ -36,7 +36,8 @@ function getVehiclesDetails(props) {
         var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
         var reamainingTime = reachable / speed + time;
-        if ((value !== null || value !== "null") && props.objDistance[currentsel] != "null") {
+
+        if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
             spaceVehicle[currentsel] = value;
             props.setTime(reamainingTime);
@@ -63,11 +64,11 @@ function getVehiclesDetails(props) {
                                 defaultChecked={(spaceVehicle.hasOwnProperty("country" + index) && key.name === spaceVehicle["country" + index]) ? true : false}
 
 
-                                disabled={values.includes(key.name)}
+                                disabled={values.includes(key.name) || key.max_distance < props.objDistance["country" + index]}
                                 onChange={(e) => {
                                     changeRadio(e)
                                 }} type="radio" name={"country" + index} key={uniqid()} value={key.name} />
-
+                            {console.log("Distance", key.max_distance, props.objDistance["country" + index])}
                             <label htmlFor={key.name} key={uniqid()} style={{ paddingLeft: "10px" }}>{key.name}</label>
                         </div>)
                     })}
