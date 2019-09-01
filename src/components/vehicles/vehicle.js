@@ -4,6 +4,7 @@ var uniqid = require('uniqid');
 var spaceVehicle = {};
 export var values = [];
 function getVehiclesDetails(props) {
+    var time = "";
     console.log("props from get", props);
     const [selVehicles, setselVehicles] = useVehicleHook({});
     const [num, setCount] = useState(0);
@@ -13,11 +14,12 @@ function getVehiclesDetails(props) {
         Object.keys(spaceVehicle).map(function (key) {
             if (spaceVehicle[key]) {
                 if (props.objDistance[key]) {
+                    time = props.time;
+                    props.setTime(time);
                     console.log("Bothhave keys", props.objDistance[key], spaceVehicle);
                 } else {
                     delete spaceVehicle[key];
                     setselVehicles(spaceVehicle);
-                    console.log("key====> if", key, spaceVehicle);
                     values = Object.values(spaceVehicle);
                     props.selectedVehicles(values);
                 }
@@ -30,17 +32,20 @@ function getVehiclesDetails(props) {
 
 
     const changeRadio = (e) => {
-        var time = props.time;
+        time = props.time;
         var currentsel = e.currentTarget.name;
         var value = e.target.value;
-        var reachable = e.target.getAttribute("maxdistance");
+        var remainingTime = "";
+        //var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
-        var reamainingTime = reachable / speed + time;
+        if (spaceVehicle[currentsel]) { time = 0; }
+        remainingTime = props.objDistance[currentsel] / speed + time;
 
         if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
+            if (spaceVehicle[currentsel]) { time = 0; }
             spaceVehicle[currentsel] = value;
-            props.setTime(reamainingTime);
+            props.setTime(remainingTime);
             setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);
@@ -68,7 +73,7 @@ function getVehiclesDetails(props) {
                                 onChange={(e) => {
                                     changeRadio(e)
                                 }} type="radio" name={"country" + index} key={uniqid()} value={key.name} />
-                            {console.log("Distance", key.max_distance, props.objDistance["country" + index])}
+
                             <label htmlFor={key.name} key={uniqid()} style={{ paddingLeft: "10px" }}>{key.name}</label>
                         </div>)
                     })}

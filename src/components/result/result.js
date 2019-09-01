@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 export default function Result(props) {
     //console.log("Props from Result===>", props);
@@ -17,7 +17,7 @@ export default function Result(props) {
                 </div>
                 <div className="row">
                     <div className="col-sm-12 text-center">
-                        <a href="/" exact >Try Again</a>
+                        <a href="/" >Catch him again</a>
                     </div>
                 </div>
             </>
@@ -37,7 +37,7 @@ export default function Result(props) {
                 </div>
                 <div className="row">
                     <div className="col-sm-12 text-center">
-                        <a href="/" exact >Try Again</a>
+                        <a href="/">Try Again</a>
                     </div>
                 </div>
             </>

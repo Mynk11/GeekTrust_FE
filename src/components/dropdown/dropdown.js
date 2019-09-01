@@ -113,6 +113,8 @@ export default function DropDown(props) {
             <div className="row pt-2">
                 <div className="col-1"></div>
                 <GetVehicleDetails
+                    speed={props.speed}
+                    setSpeed={props.speed}
                     time={props.time}
                     setTime={props.setTime}
                     objDistance={objDistance}

@@ -15,6 +15,7 @@ function App() {
   const [vehicles, setVehicles] = useVehicleState([]);
   const [result, setResult] = useState({});
   const [time, setTime] = useState(0);
+  const [speed, setSpeed] = useState({});
   useEffect(() => {
     Promise.all([
       fetch("https://findfalcone.herokuapp.com/planets"),
@@ -39,7 +40,7 @@ function App() {
       <Header props={result}></Header>
 
       <BrowserRouter>
-
+        {console.log("Setspeed", speed, setSpeed)}
         <Route path="/" exact component={() => {
           return (
             <>
@@ -51,7 +52,8 @@ function App() {
                 selectedPlnts={selectedPlanets}
                 selectedVehcle={selectedVehicles}
                 time={time}
-
+                speed={speed}
+                setSpeed={setSpeed}
                 setTime={setTime}
               ></GetPlanetsDetails>
 

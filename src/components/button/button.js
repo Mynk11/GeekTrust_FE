@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./button.css";
-import Result from '../result/result';
+//import Result from '../result/result';
 import { Link } from 'react-router-dom';
 
 

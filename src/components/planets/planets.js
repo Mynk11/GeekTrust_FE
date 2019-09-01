@@ -4,7 +4,6 @@ import DropDown from '../dropdown/dropdown';
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
-
     if (props.planets.length > 0) {
 
 
@@ -14,7 +13,8 @@ function getPlanetsDetails(props) {
                     option={props.planets}
                     time={props.time}
                     setTime={props.setTime}
-
+                    speed={props.speed}
+                    setSpeed={props.setSpeed}
                     selectedPlanet={props.selectedPlanet}
                     vehicles={props.vehicles}
                     selectedVehicles={props.selectedVehicles}
