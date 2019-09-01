@@ -5,12 +5,12 @@ var spaceVehicle = {};
 export var values = [];
 function getVehiclesDetails(props) {
     var time = "";
-    console.log("props from get", props);
+    //console.log("props from get", props);
     const [selVehicles, setselVehicles] = useVehicleHook({});
     const [num, setCount] = useState(0);
 
     useEffect(() => {
-        console.log("This props===>", props);
+        //console.log("This props===>", props);
         Object.keys(spaceVehicle).map(function (key) {
             if (spaceVehicle[key]) {
                 if (props.objDistance[key]) {

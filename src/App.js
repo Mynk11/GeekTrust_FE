@@ -40,7 +40,6 @@ function App() {
       <Header props={result}></Header>
 
       <BrowserRouter>
-        {console.log("Setspeed", speed, setSpeed)}
         <Route path="/" exact component={() => {
           return (
             <>

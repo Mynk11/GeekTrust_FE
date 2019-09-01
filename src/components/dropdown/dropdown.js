@@ -18,17 +18,27 @@ export default function DropDown(props) {
     }, [count]);
 
     const changeSel = (e) => {
+        var changeSel = "";
         var currentsel = e.target.name;
         var value = e.target.value;
         var distance = e.nativeEvent.target.selectedOptions[0].getAttribute("distance");
-        //console.log("Value============>", value);
-        if (value !== "select") {
-            console.log("Planet is selected", value);
+        console.log("Value============>", objDistance[currentsel], distance);
+        if (objDistance[currentsel]) {
+            if (objDistance[currentsel] == distance) {
+                changeSel = true;
+            } else {
+                changeSel = false;
+            }
+        } else {
+            changeSel = true;
+        }
+        if (value !== "select" && changeSel) {
+            console.log("Planet is selected", objDistance, selected);
+
             selected[currentsel] = value;
             countryVal = Object.values(selected);
             objDistance[currentsel] = distance;
             props.selectedPlanet(countryVal);
-
             setSelected(selected);
             setCount(count + 1);
         } else {
