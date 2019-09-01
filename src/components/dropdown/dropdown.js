@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import usePlanetState from '../hooks/usePlanetState.js';
 import GetVehicleDetails from '../vehicles/vehicle';
 import Timer from '../time/time';
+import './dropdown.css';
 
 var uniqid = require('uniqid');
 var selected = {};
@@ -20,8 +21,9 @@ export default function DropDown(props) {
         var currentsel = e.target.name;
         var value = e.target.value;
         var distance = e.nativeEvent.target.selectedOptions[0].getAttribute("distance");
-        console.log("Value============>", value);
+        //console.log("Value============>", value);
         if (value !== "select") {
+            console.log("Planet is selected", value);
             selected[currentsel] = value;
             countryVal = Object.values(selected);
             objDistance[currentsel] = distance;
@@ -32,9 +34,12 @@ export default function DropDown(props) {
         } else {
             console.log("please change the planet", selected, currentsel);
             delete selected[currentsel];
+            delete objDistance[currentsel];
+            console.log("remove null cntry==>", selected);
+            setSelected(selected);
             countryVal = Object.values(selected);
-            objDistance[currentsel] = distance;
-            console.log("====>", selected);
+
+            console.log("====>", objDistance);
             props.selectedPlanet(countryVal);
 
         }
@@ -108,6 +113,7 @@ export default function DropDown(props) {
             <div className="row pt-2">
                 <div className="col-1"></div>
                 <GetVehicleDetails
+                    time={props.time}
                     setTime={props.setTime}
                     objDistance={objDistance}
                     key={uniqid()}
@@ -118,7 +124,7 @@ export default function DropDown(props) {
 
                 </GetVehicleDetails>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -13,7 +13,7 @@ function App() {
   const [selectedVehicles, setSelectedVehicles] = useState([]);
   const [planets, setPlanets] = usePlanetState([]);
   const [vehicles, setVehicles] = useVehicleState([]);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState({});
   const [time, setTime] = useState(0);
   useEffect(() => {
     Promise.all([
@@ -35,8 +35,8 @@ function App() {
 
 
   return (
-    <div className="App " >
-      <Header className="backgroundColor"></Header>
+    <div className="App container-fluid">
+      <Header props={result}></Header>
 
       <BrowserRouter>
 
@@ -67,8 +67,8 @@ function App() {
 
         </Route>
 
-        {console.log("Result is====>", result)}
-        <Route exact path="/result" component={() => <Result result={result}>{result}</Result>}></Route>
+
+        <Route exact path="/result" component={() => <Result time={time} result={result}>{result}</Result>}></Route>
         <Footer>
         </Footer>
       </BrowserRouter>

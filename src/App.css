@@ -1,1 +1,14 @@
+div{
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, .2);
 
+}
+div.App{
+    -webkit-box-shadow:  0 0 5rem rgba(0, 0, 0, .5);
+            box-shadow:  0 0 5rem rgba(0, 0, 0, .5);            
+           color:white;
+           height:100vh;
+        }
+
+body{
+    background-color: rgb(48, 51, 48) !important;
+ }

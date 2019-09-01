@@ -1,16 +1,46 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 export default function Result(props) {
     //console.log("Props from Result===>", props);
-    return (
+    if (props.result.status !== "false") {
+        return (
+            <>
+                <div className="row">
 
-        <div className="row text-center ">
+                    <div className="col-sm-12 text-center">
 
-            <div className="col-6"><h1>{props.result.planet_name}</h1> </div>
-            <div className="col-6"> <h1>{props.result.status}</h1></div>
+                        <h4>falcone is hiding in {props.result.planet_name} & caught by us {props.result.status}fully</h4>
+                        <div>Time taken:{props.time}</div>
+                    </div>
 
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 text-center">
+                        <a href="/" exact >Try Again</a>
+                    </div>
+                </div>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <div className="row">
 
-        </div>
-    )
+                    <div className="col-sm-12 text-center">
+
+                        <h4>We failed to find Falcone King shah is going to kill us!!</h4>
+                        <div>Time taken:{props.time}</div>
+                    </div>
+
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 text-center">
+                        <a href="/" exact >Try Again</a>
+                    </div>
+                </div>
+            </>
+        )
+    }
 }

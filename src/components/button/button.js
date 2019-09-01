@@ -13,7 +13,13 @@ export default class Button extends Component {
 
     check() {
         console.log("Check is called", this.props);
-        this.setState({ href: '/result' })
+        if (this.props.vehicles.length < 4) {
+            this.setState({ href: null })
+        }
+        else {
+            this.setState({ href: '/result' })
+        }
+
     }
 
     onclick = (e) => {
@@ -81,7 +87,7 @@ export default class Button extends Component {
     }
 
     render() {
-        console.log("Button props=========>", this.props);
+        // console.log("Button props=========>", this.props);
         return (
 
             <div className={'user row text-center mt-5 may'}>
@@ -91,7 +97,10 @@ export default class Button extends Component {
                         this.onclick();
                     }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>
 
-                    <Link to={this.props.planets.length < 4 ? null : this.state.href}>find falcone!</Link>
+                    <Link className="font-font-weight-bold color"
+                        to={((this.props.planets.length < 4) && (this.props.vehicles.length < 4)) ? null : this.state.href}>
+                        Find falcone!
+                    </Link>
 
                 </button>
 

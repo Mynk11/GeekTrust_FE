@@ -1,3 +1,14 @@
 .header{
-    background: grey;
+    height:40px;   
+}
+
+colorWhite{
+    color:white !important;
+}
+a.color{
+    color:white !important;
+}
+
+.displayNone{
+  display: none;
 }

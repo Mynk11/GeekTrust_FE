@@ -9,7 +9,7 @@ function getPlanetsDetails(props) {
 
 
         return (
-            <div key={uniqid()}>
+            <div key={uniqid()} className="container">
                 <DropDown key={uniqid()}
                     option={props.planets}
                     time={props.time}
@@ -23,17 +23,7 @@ function getPlanetsDetails(props) {
 
                 </DropDown>
 
-                <div className="row" key={uniqid()}>
-                    <div className="col-1" key={uniqid()}></div>
 
-
-
-
-
-
-
-
-                </div>
             </div>
         )
     }

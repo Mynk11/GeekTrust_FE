@@ -1,36 +1,46 @@
-import React from "react";
+import React, { PureComponent } from "react";
+import './footer.css'
 var style = {
     backgroundColor: "#F8F8F8",
-    borderTop: "1px solid #E7E7E7",
+    borderTop: "none",
     textAlign: "center",
-    padding: "20px",
+    paddingBottom: "5px",
     position: "fixed",
     left: "0",
     bottom: "0",
-    height: "60px",
+    height: "40px",
     width: "100%",
 }
 
 var phantom = {
     display: 'block',
-    padding: '20px',
-    height: '60px',
+    paddingBottom: '5px',
+    height: '40px',
     width: '100%',
 }
 
-function Footer({ children }) {
-    return (
-        <div>
-            <div style={phantom} />
-            <div style={style}>
-                {children}
-                <div>
-                    Coding problem - <a href="www.geektrust.in/finding-falcone"> www.geektrust.in/finding-falcone
+
+
+class Footer extends PureComponent {
+
+
+
+    render() {
+        return (
+            <div className="font-italic">
+                <div style={phantom} />
+                <div style={style}>
+
+
+                    <div style={{ paddingTop: "0.7%" }}>
+                        <span className="font-weight-bold" style={{ color: "black" }}>Coding problem - </span>
+                        <a className="font-weight-bolder" style={{ color: "green" }}
+                            href="https://www.geektrust.in/coding-problem/frontend/space"> www.geektrust.in/finding-falcone
                 </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
-
 export default Footer;
