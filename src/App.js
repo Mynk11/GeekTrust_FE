@@ -8,6 +8,7 @@ import usePlanetState from './components/hooks/usePlanetState';
 import useVehicleState from './components/hooks/useVehiclHook';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
+
 function App() {
   const [selectedPlanets, setSelectedPlanets] = useState([]);
   const [selectedVehicles, setSelectedVehicles] = useState([]);
@@ -15,6 +16,7 @@ function App() {
   const [vehicles, setVehicles] = useVehicleState([]);
   const [result, setResult] = useState({});
   const [time, setTime] = useState(0);
+  const [selVehicles, setselVehicles] = useVehicleState({});
   const [speed, setSpeed] = useState({});
   useEffect(() => {
     Promise.all([
@@ -23,9 +25,11 @@ function App() {
     ]).then((allResponses) => {
       allResponses[0].json().then((planet) => {
         setPlanets(planet);
+        console.log("Planets===>", planets);
       });
       allResponses[1].json().then((vehicle) => {
         setVehicles(vehicle);
+        console.log("vehicles===>", vehicles);
       });
 
     }).catch((err) => {
@@ -51,9 +55,9 @@ function App() {
                 selectedPlnts={selectedPlanets}
                 selectedVehcle={selectedVehicles}
                 time={time}
-                speed={speed}
-                setSpeed={setSpeed}
                 setTime={setTime}
+                selVehicles={selVehicles}
+                setselVehicles={setselVehicles}
               ></GetPlanetsDetails>
 
               <SearchButton

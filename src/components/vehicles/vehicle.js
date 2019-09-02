@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import useVehicleHook from '../hooks/useVehiclHook';
 var uniqid = require('uniqid');
-var spaceVehicle = {};
-export var values = [];
+
 function getVehiclesDetails(props) {
     var time = "";
-    //console.log("props from get", props);
-    const [selVehicles, setselVehicles] = useVehicleHook({});
+    var values = props.selectedVehcle || [];
+    var spaceVehicle = {};
     const [num, setCount] = useState(0);
 
     useEffect(() => {
-        //console.log("This props===>", props);
-        Object.keys(spaceVehicle).map(function (key) {
+        console.log("Vehicle props===>", props);
+        /* Object.keys(spaceVehicle).map(function (key) {
             if (spaceVehicle[key]) {
                 if (props.objDistance[key]) {
                     time = props.time;
                     props.setTime(time);
-                    console.log("Bothhave keys", props.objDistance[key], spaceVehicle);
+
+                    //console.log("Both have keys", props.objDistance[key], spaceVehicle);
                 } else {
                     delete spaceVehicle[key];
-                    setselVehicles(spaceVehicle);
+                    props.setselVehicles(spaceVehicle);
                     values = Object.values(spaceVehicle);
                     props.selectedVehicles(values);
                 }
 
             }
-        });
+        }); */
 
 
     })
@@ -38,15 +37,16 @@ function getVehiclesDetails(props) {
         var remainingTime = "";
         //var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
-        if (spaceVehicle[currentsel]) { time = 0; }
+        if (props.selVehicles[currentsel]) { time = 0; }
         remainingTime = props.objDistance[currentsel] / speed + time;
 
         if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
-            if (spaceVehicle[currentsel]) { time = 0; }
+            if (props.selVehicles[currentsel]) { time = 0; }
+            spaceVehicle = props.selVehicles;
             spaceVehicle[currentsel] = value;
             props.setTime(remainingTime);
-            setselVehicles(spaceVehicle);
+            props.setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);
             setCount(num + 1);
@@ -66,10 +66,11 @@ function getVehiclesDetails(props) {
                                 speed={key.speed}
                                 maxdistance={key.max_distance}
 
-                                defaultChecked={(spaceVehicle.hasOwnProperty("country" + index) && key.name === spaceVehicle["country" + index]) ? true : false}
+                                defaultChecked=
+                                {(props.selVehicles.hasOwnProperty("country" + index) && key.name === props.selVehicles["country" + index]) ? true : false}
 
 
-                                disabled={values.includes(key.name) || key.max_distance < props.objDistance["country" + index]}
+                                disabled={props.selectedVehcle.includes(key.name) || key.max_distance < props.objDistance["country" + index]}
                                 onChange={(e) => {
                                     changeRadio(e)
                                 }} type="radio" name={"country" + index} key={uniqid()} value={key.name} />
