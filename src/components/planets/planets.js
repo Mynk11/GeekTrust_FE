@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DropDown from '../dropdown/dropdown';
-import useVehicleHook from '../hooks/useVehiclHook';
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
 
-    //console.log("planets props===>", props);
+
 
     if (props.planets.length > 0) {
 
@@ -23,6 +22,10 @@ function getPlanetsDetails(props) {
                     selectedVehcle={props.selectedVehcle}
                     selVehicles={props.selVehicles}
                     setselVehicles={props.setselVehicles}
+                    selectePlanetObj={props.selectePlanetObj}
+                    setSelectePlanetObj={props.setSelectePlanetObj}
+                    distanceObj={props.distanceObj}
+                    setDistanceObj={props.setDistanceObj}
                 >
 
                 </DropDown>

@@ -3,24 +3,19 @@ import usePlanetState from '../hooks/usePlanetState.js';
 import GetVehicleDetails from '../vehicles/vehicle';
 import Timer from '../time/time';
 import './dropdown.css';
-
 var uniqid = require('uniqid');
-var selected = {};
-var countryVal = [];
-var objDistance = {};
+
+
 export default function DropDown(props) {
-    const [sel, setSelected] = usePlanetState({});
-    const [count, setCount] = useState([0]);
-
-
+    var countryVal = props.selectedPlanets || [];
+    var selected = props.selectePlanetObj || {};
+    var objDistance = props.distanceObj || {};
     useEffect(() => {
         console.log("props from drop==>", props);
-    }, [count]);
+    }, []);
 
     const changeSel = (e) => {
         var vehicle = "";
-        var vehicleArr = "";
-        var index = "";
         var changeSel = "";
         var currentsel = e.target.name;
         var value = e.target.value;
@@ -40,21 +35,21 @@ export default function DropDown(props) {
             countryVal = Object.values(selected);
             objDistance[currentsel] = distance;
             props.selectedPlanet(countryVal);
-            setSelected(selected);
-            setCount(count + 1);
+            props.setSelectePlanetObj(selected);
+            props.setDistanceObj(objDistance);
         } else {
 
             if (value !== "select") {
-                var previous = selected[currentsel];
                 vehicle = props.selVehicles;
                 delete vehicle[currentsel];
                 props.setselVehicles(vehicle);
-                console.log("Vehicle===============>", vehicle, vehicleArr);
                 selected[currentsel] = value;
                 countryVal = Object.values(selected);
                 objDistance[currentsel] = distance;
                 props.selectedPlanet(countryVal);
-                setSelected(selected);
+                props.setSelectePlanetObj(selected);
+                props.setDistanceObj(objDistance);
+
                 props.selectedVehicles(Object.values(props.selVehicles));
             }
             else {
@@ -63,15 +58,12 @@ export default function DropDown(props) {
                 vehicle = props.selVehicles;
                 delete vehicle[currentsel];
                 props.setselVehicles(vehicle);
-                setSelected(selected);
+
                 countryVal = Object.values(selected);
                 props.selectedPlanet(countryVal);
-                //vehicleArr = props.selectedVehcle;
-                console.log("before splice", vehicleArr);
-                //index = vehicleArr.indexOf(currenntVehicle);
-                //vehicleArr.splice(index, 1);
                 props.selectedVehicles(Object.values(props.selVehicles));
-                console.log("selected", props.selVehicles, props.selectedVehcle);
+                props.setSelectePlanetObj(selected);
+                props.setDistanceObj(objDistance);
             }
         }
 

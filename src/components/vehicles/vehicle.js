@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 var uniqid = require('uniqid');
+
 
 function getVehiclesDetails(props) {
     var time = "";
     var values = props.selectedVehcle || [];
     var spaceVehicle = {};
-    const [num, setCount] = useState(0);
+
 
     useEffect(() => {
         console.log("Vehicle props===>", props);
@@ -49,7 +50,7 @@ function getVehiclesDetails(props) {
             props.setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);
-            setCount(num + 1);
+
         }
 
 

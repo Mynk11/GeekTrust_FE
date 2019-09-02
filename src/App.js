@@ -10,6 +10,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 
 function App() {
+  const [distanceObj, setDistanceObj] = useState({});
+  const [selectePlanetObj, setSelectePlanetObj] = useState({})
   const [selectedPlanets, setSelectedPlanets] = useState([]);
   const [selectedVehicles, setSelectedVehicles] = useState([]);
   const [planets, setPlanets] = usePlanetState([]);
@@ -17,7 +19,6 @@ function App() {
   const [result, setResult] = useState({});
   const [time, setTime] = useState(0);
   const [selVehicles, setselVehicles] = useVehicleState({});
-  const [speed, setSpeed] = useState({});
   useEffect(() => {
     Promise.all([
       fetch("https://findfalcone.herokuapp.com/planets"),
@@ -58,6 +59,10 @@ function App() {
                 setTime={setTime}
                 selVehicles={selVehicles}
                 setselVehicles={setselVehicles}
+                selectePlanetObj={selectePlanetObj}
+                setSelectePlanetObj={setSelectePlanetObj}
+                distanceObj={distanceObj}
+                setDistanceObj={setDistanceObj}
               ></GetPlanetsDetails>
 
               <SearchButton
