@@ -12,9 +12,11 @@ export default function DropDown(props) {
     var objDistance = props.distanceObj || {};
     useEffect(() => {
         console.log("props from drop==>", props);
+
     }, []);
 
     const changeSel = (e) => {
+        var timeObj = props.time || {};
         var vehicle = "";
         var changeSel = "";
         var currentsel = e.target.name;
@@ -49,8 +51,10 @@ export default function DropDown(props) {
                 props.selectedPlanet(countryVal);
                 props.setSelectePlanetObj(selected);
                 props.setDistanceObj(objDistance);
-
                 props.selectedVehicles(Object.values(props.selVehicles));
+                delete timeObj[currentsel];
+                props.setTime(timeObj);
+
             }
             else {
                 delete selected[currentsel];
@@ -58,12 +62,13 @@ export default function DropDown(props) {
                 vehicle = props.selVehicles;
                 delete vehicle[currentsel];
                 props.setselVehicles(vehicle);
-
                 countryVal = Object.values(selected);
                 props.selectedPlanet(countryVal);
                 props.selectedVehicles(Object.values(props.selVehicles));
                 props.setSelectePlanetObj(selected);
                 props.setDistanceObj(objDistance);
+                delete timeObj[currentsel];
+                props.setTime(timeObj);
             }
         }
 
@@ -125,7 +130,7 @@ export default function DropDown(props) {
 
                 <div className="col-sm-2">
 
-                    <Timer Time={props.time}></Timer>
+                    <Timer Time={props.totalTime}></Timer>
                 </div>
 
 
@@ -136,7 +141,8 @@ export default function DropDown(props) {
             <div className="row pt-2">
                 <div className="col-sm-1"></div>
                 <GetVehicleDetails
-
+                    totalTime={props.totalTime}
+                    setTotalTime={props.setTotalTime}
                     time={props.time}
                     setTime={props.setTime}
                     objDistance={objDistance}

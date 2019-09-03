@@ -12,6 +12,8 @@ function getPlanetsDetails(props) {
         return (
             <div key={uniqid()}>
                 <DropDown key={uniqid()}
+                    totalTime={props.totalTime}
+                    setTotalTime={props.setTotalTime}
                     option={props.planets}
                     time={props.time}
                     setTime={props.setTime}

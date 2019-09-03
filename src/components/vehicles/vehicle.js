@@ -3,50 +3,41 @@ var uniqid = require('uniqid');
 
 
 function getVehiclesDetails(props) {
-    var time = "";
+    var time = props.time || {};
     var values = props.selectedVehcle || [];
     var spaceVehicle = {};
 
 
     useEffect(() => {
+        var timeArr = [];
         console.log("Vehicle props===>", props);
-        /* Object.keys(spaceVehicle).map(function (key) {
-            if (spaceVehicle[key]) {
-                if (props.objDistance[key]) {
-                    time = props.time;
-                    props.setTime(time);
-
-                    //console.log("Both have keys", props.objDistance[key], spaceVehicle);
-                } else {
-                    delete spaceVehicle[key];
-                    props.setselVehicles(spaceVehicle);
-                    values = Object.values(spaceVehicle);
-                    props.selectedVehicles(values);
-                }
-
-            }
-        }); */
-
+        timeArr = Object.values(props.time);
+        if (timeArr.length > 0) {
+            props.setTotalTime(timeArr.reduce((sum, num) => { return sum + num }));
+        } else {
+            props.setTotalTime(0);
+        }
 
     })
 
 
     const changeRadio = (e) => {
-        time = props.time;
+
         var currentsel = e.currentTarget.name;
         var value = e.target.value;
         var remainingTime = "";
         //var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
         if (props.selVehicles[currentsel]) { time = 0; }
-        remainingTime = props.objDistance[currentsel] / speed + time;
+        remainingTime = props.objDistance[currentsel] / speed;
 
         if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
             if (props.selVehicles[currentsel]) { time = 0; }
             spaceVehicle = props.selVehicles;
+            time[currentsel] = remainingTime;
             spaceVehicle[currentsel] = value;
-            props.setTime(remainingTime);
+            props.setTime(time);
             props.setselVehicles(spaceVehicle);
             values = Object.values(spaceVehicle);
             props.selectedVehicles(values);

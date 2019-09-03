@@ -10,6 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 
 function App() {
+  const [totalTime, setTotalTime] = useState(0);
   const [distanceObj, setDistanceObj] = useState({});
   const [selectePlanetObj, setSelectePlanetObj] = useState({})
   const [selectedPlanets, setSelectedPlanets] = useState([]);
@@ -17,7 +18,7 @@ function App() {
   const [planets, setPlanets] = usePlanetState([]);
   const [vehicles, setVehicles] = useVehicleState([]);
   const [result, setResult] = useState({});
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState({});
   const [selVehicles, setselVehicles] = useVehicleState({});
   useEffect(() => {
     Promise.all([
@@ -49,6 +50,8 @@ function App() {
           return (
             <>
               <GetPlanetsDetails
+                totalTime={totalTime}
+                setTotalTime={setTotalTime}
                 planets={planets}
                 vehicles={vehicles}
                 selectedPlanet={setSelectedPlanets}
@@ -78,7 +81,7 @@ function App() {
         </Route>
 
 
-        <Route exact path="/result" component={() => <Result time={time} result={result}>{result}</Result>}></Route>
+        <Route exact path="/result" component={() => <Result time={totalTime} result={result}>{result}</Result>}></Route>
         <Footer>
         </Footer>
       </BrowserRouter>

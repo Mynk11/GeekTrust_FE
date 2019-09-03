@@ -9,13 +9,13 @@ function Header(props) {
     return (
         <div className="container-fluid">
             <div className="row App-header header">
-                <div className="col-sm-9 font-weight-bolder">
+                <div className="col-sm-8 font-weight-bolder">
                     <span style={{ color: "white" }}>Find  falcone</span>
                 </div>
                 <div className="col-sm-1 text-right font-weight-bolder">
                     <a className="color" aria-current="page" href="/">Reset</a></div>
 
-                <div className="col-sm-2 text-left">
+                <div className="col-sm-3 text-left">
 
                     <a className="font-weight-bolder color" aria-current="page" href="https://www.geektrust.in">
                         <span>|</span>
