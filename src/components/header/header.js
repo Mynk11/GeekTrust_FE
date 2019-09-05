@@ -2,10 +2,7 @@ import React from 'react';
 import './header.css'
 function Header(props) {
     //console.log("props=============>", props.props.status);
-    var result = { status: null };
-    if (props.props.status) {
-        result.status = props.props.status;
-    }
+
     return (
         <div className="container-fluid">
             <div className="row App-header header">
@@ -26,15 +23,8 @@ function Header(props) {
                     </a>
                 </div>
             </div>
-            <div rowSpan="3" className={result.status !== null ? "displayNone" : "" + "page-Header pt-2 font-weight-bolder"}
-                style={{ textAlign: "center", fontSize: "20px" }}><b>Finding Falcoin!</b></div>
 
-            <div className={result.status !== null ? "displayNone" : " " + "row"}>
-                <div className="col-12 font-weight-bold" style={{ textAlign: "center", fontSize: "16px" }}>
-                    Select which planet you want to search in
-            </div>
-            </div>
-        </div >
+        </div>
     )
 }
 

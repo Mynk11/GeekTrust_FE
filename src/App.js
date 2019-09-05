@@ -8,6 +8,7 @@ import usePlanetState from './components/hooks/usePlanetState';
 import useVehicleState from './components/hooks/useVehiclHook';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
+import TextContent from './components/textContent/textContent';
 
 function App() {
   const [totalTime, setTotalTime] = useState(0);
@@ -45,10 +46,12 @@ function App() {
     <div className="App container-fluid">
       <Header props={result}></Header>
 
+
       <BrowserRouter>
         <Route path="/" exact component={() => {
           return (
             <>
+              <TextContent props={result}></TextContent>
               <GetPlanetsDetails
                 totalTime={totalTime}
                 setTotalTime={setTotalTime}
