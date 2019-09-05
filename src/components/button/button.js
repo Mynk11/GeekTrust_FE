@@ -63,10 +63,6 @@ export default class Button extends Component {
                             if (res.ok) {
 
                                 this.props.setResult(data);
-
-                                //return <Result></Result>
-                                //this.props.setResult(data);
-                                //alert(`Congratulations you find the Falcone on planet ${data.planet_name}`);
                             } else {
                                 alert(`${data.error}`);
                             }

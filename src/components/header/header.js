@@ -9,17 +9,20 @@ function Header(props) {
     return (
         <div className="container-fluid">
             <div className="row App-header header">
-                <div className="col-sm-8 font-weight-bolder">
+                <div className="col-sm-9 font-weight-bolder">
                     <span style={{ color: "white" }}>Find  falcone</span>
                 </div>
-                <div className="col-sm-1 text-right font-weight-bolder">
-                    <a className="color" aria-current="page" href="/">Reset</a></div>
 
-                <div className="col-sm-3 text-left">
 
-                    <a className="font-weight-bolder color" aria-current="page" href="https://www.geektrust.in">
-                        <span>|</span>
-                        <span style={{ paddingLeft: "8%" }}>Geek Trust Home</span>
+                <div className="col-sm-3 pl-2">
+                    <span className=" text-right font-weight-bolder pr-3">
+                        <a className="color" aria-current="page" href="/">Reset</a>
+                    </span>
+                    <span className="text-center"> | </span>
+
+                    <a className="font-weight-bolder color text-left pl-3" aria-current="page" href="https://www.geektrust.in">
+
+                        <span>Geek Trust Home</span>
                     </a>
                 </div>
             </div>

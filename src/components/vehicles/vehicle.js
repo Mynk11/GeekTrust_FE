@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
+import Loader from '../loader/loader';
 var uniqid = require('uniqid');
-
-
 function getVehiclesDetails(props) {
     var time = props.time || {};
     var values = props.selectedVehcle || [];
@@ -28,12 +27,12 @@ function getVehiclesDetails(props) {
         var remainingTime = "";
         //var reachable = e.target.getAttribute("maxdistance");
         var speed = e.target.getAttribute("speed");
-        if (props.selVehicles[currentsel]) { time = 0; }
+        if (props.selVehicles[currentsel]) { }
         remainingTime = props.objDistance[currentsel] / speed;
 
         if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
-            if (props.selVehicles[currentsel]) { time = 0; }
+            if (props.selVehicles[currentsel]) { }
             spaceVehicle = props.selVehicles;
             time[currentsel] = remainingTime;
             spaceVehicle[currentsel] = value;
@@ -75,7 +74,7 @@ function getVehiclesDetails(props) {
         })
     }
     else {
-        return (<ul><li key={uniqid()}>List coming soon</li></ul>)
+        return (<Loader />)
     }
 }
 export default getVehiclesDetails;

@@ -1,5 +1,6 @@
 import React from 'react';
 import DropDown from '../dropdown/dropdown';
+import Loader from '../loader/loader';
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
@@ -37,7 +38,7 @@ function getPlanetsDetails(props) {
         )
     }
     else {
-        return (<ul><li key={Math.random()}>Planets  list coming soon</li></ul>)
+        return (<Loader></Loader>)
     }
 }
 export default getPlanetsDetails;
