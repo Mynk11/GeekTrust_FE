@@ -9,7 +9,7 @@ import useVehicleState from './components/hooks/useVehiclHook';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
-
+import ErrorBoundary from './components/errorBoundary/errorBondary';
 function App() {
   const [totalTime, setTotalTime] = useState(0);
   const [distanceObj, setDistanceObj] = useState({});
@@ -44,6 +44,7 @@ function App() {
 
   return (
     <div className="App container-fluid">
+
       <Header props={result}></Header>
 
 
@@ -52,65 +53,61 @@ function App() {
           return (
             <>
               <TextContent props={result}></TextContent>
-              <GetPlanetsDetails
-                totalTime={totalTime}
-                setTotalTime={setTotalTime}
-                planets={planets}
-                vehicles={vehicles}
-                selectedPlanet={setSelectedPlanets}
-                selectedVehicles={setSelectedVehicles}
-                selectedPlnts={selectedPlanets}
-                selectedVehcle={selectedVehicles}
-                time={time}
-                setTime={setTime}
-                selVehicles={selVehicles}
-                setselVehicles={setselVehicles}
-                selectePlanetObj={selectePlanetObj}
-                setSelectePlanetObj={setSelectePlanetObj}
-                distanceObj={distanceObj}
-                setDistanceObj={setDistanceObj}
-              ></GetPlanetsDetails>
+              <ErrorBoundary>
+                <GetPlanetsDetails
+                  totalTime={totalTime}
+                  setTotalTime={setTotalTime}
+                  planets={planets}
+                  vehicles={vehicles}
+                  selectedPlanet={setSelectedPlanets}
+                  selectedVehicles={setSelectedVehicles}
+                  selectedPlnts={selectedPlanets}
+                  selectedVehcle={selectedVehicles}
+                  time={time}
+                  setTime={setTime}
+                  selVehicles={selVehicles}
+                  setselVehicles={setselVehicles}
+                  selectePlanetObj={selectePlanetObj}
+                  setSelectePlanetObj={setSelectePlanetObj}
+                  distanceObj={distanceObj}
+                  setDistanceObj={setDistanceObj}
+                ></GetPlanetsDetails>
 
-              <SearchButton
-                planets={selectedPlanets}
-                vehicles={selectedVehicles}
-                setResult={setResult}
-              >
-              </SearchButton>
+                <SearchButton
+                  planets={selectedPlanets}
+                  vehicles={selectedVehicles}
+                  setResult={setResult}
+                >
+                </SearchButton>
+              </ErrorBoundary>
             </>
           )
         }}>
 
         </Route>
 
+        <ErrorBoundary>
+          <Route exact path="/result" component={() => <Result
 
-        <Route exact path="/result" component={() => <Result
-
-          totalTime={totalTime}
-          setTotalTime={setTotalTime}
-
-          selectedPlanet={setSelectedPlanets}
-          selectedVehicles={setSelectedVehicles}
-
-
-          setTime={setTime}
-
-          setselVehicles={setselVehicles}
-
-          setSelectePlanetObj={setSelectePlanetObj}
-
-          setDistanceObj={setDistanceObj}
-          setResult={setResult}
-          time={totalTime}
-
-          result={result}>{result}</Result>}></Route>
+            totalTime={totalTime}
+            setTotalTime={setTotalTime}
+            selectedPlanet={setSelectedPlanets}
+            selectedVehicles={setSelectedVehicles}
+            setTime={setTime}
+            setselVehicles={setselVehicles}
+            setSelectePlanetObj={setSelectePlanetObj}
+            setDistanceObj={setDistanceObj}
+            setResult={setResult}
+            time={totalTime}
+            result={result}>{result}</Result>}></Route>
+        </ErrorBoundary>
         <Footer>
         </Footer>
       </BrowserRouter>
 
       <Footer>
       </Footer>
-    </div>
+    </div >
   );
 }
 

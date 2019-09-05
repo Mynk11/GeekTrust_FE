@@ -93,7 +93,7 @@ export default class Button extends Component {
                         this.onclick();
                     }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>
 
-                    <Link className="font-font-weight-bold color"
+                    <Link className="font-weight-bolder color"
                         to={((this.props.planets.length < 4) && (this.props.vehicles.length < 4)) ? null : this.state.href}>
                         Find falcone!
                     </Link>

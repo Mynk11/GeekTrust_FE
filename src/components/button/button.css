@@ -13,12 +13,12 @@ button.user{
     font-size:16px;
     font-weight:100;
     color:#fff;
-    background: #0f1113;
+    background: rgb(98, 231, 127);
     border:0;
     font-weight:100;
   }
   button.user:hover{
     background: #4E9CAF;
-    color:tomato;
+    color:rgb(71, 255, 111);
   }
   /* END OF BUTTON STYLES */
