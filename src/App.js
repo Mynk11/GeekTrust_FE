@@ -84,7 +84,26 @@ function App() {
         </Route>
 
 
-        <Route exact path="/result" component={() => <Result time={totalTime} result={result}>{result}</Result>}></Route>
+        <Route exact path="/result" component={() => <Result
+
+          totalTime={totalTime}
+          setTotalTime={setTotalTime}
+
+          selectedPlanet={setSelectedPlanets}
+          selectedVehicles={setSelectedVehicles}
+
+
+          setTime={setTime}
+
+          setselVehicles={setselVehicles}
+
+          setSelectePlanetObj={setSelectePlanetObj}
+
+          setDistanceObj={setDistanceObj}
+          setResult={setResult}
+          time={totalTime}
+
+          result={result}>{result}</Result>}></Route>
         <Footer>
         </Footer>
       </BrowserRouter>

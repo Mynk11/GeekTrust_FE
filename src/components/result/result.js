@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../loader/loader';
 import { isUndefined } from 'util';
+import './result.css';
 export default function Result(props) {
+    useEffect(() => {
+
+
+    }, [])
+    const setAllNull = () => {
+        props.setTotalTime(0);
+        props.selectedPlanet([]);
+        props.selectedVehicles([]);
+        props.setDistanceObj({});
+        props.setTime({});
+        props.setselVehicles({});
+        props.setSelectePlanetObj({});
+        props.setResult({});
+        console.log(`Set all null is called:==> ${props}`);
+    }
     console.log("Props from Result===>", props.result);
     if (isUndefined(props.result.status)) {
         console.log("Props from Result=========>", props.result);
@@ -16,14 +32,14 @@ export default function Result(props) {
 
                     <div className="col-sm-12 text-center">
                         <h3>Success! Congratultion on Finding Falcone King Shah is mighty pleased</h3>
-                        <h6>falcone is hiding in <i>{props.result.planet_name}</i> & caught by us {props.result.status}fully</h6>
+                        <h5>falcone is hiding in <i>{props.result.planet_name}</i> & caught by us {props.result.status}fully</h5>
                         <div>Time taken : {props.time}</div>
                     </div>
 
                 </div>
-                <div className="row">
+                <div className="row pt-3">
                     <div className="col-sm-12 text-center">
-                        <Link to="/" props={null} >Catch him again</Link>
+                        <Link to="/" className="ResultButton" props={null} onClick={() => { setAllNull() }}>Catch him again</Link>
                     </div>
                 </div>
             </>
@@ -41,9 +57,9 @@ export default function Result(props) {
                     </div>
 
                 </div>
-                <div className="row">
+                <div className="row pt-3">
                     <div className="col-sm-12 text-center">
-                        <Link to="/">Try Again</Link>
+                        <Link to="/" className="ResultButton" onClick={() => { setAllNull() }}>Try Again</Link>
                     </div>
                 </div>
             </>

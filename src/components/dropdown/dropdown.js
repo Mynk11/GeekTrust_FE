@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import usePlanetState from '../hooks/usePlanetState.js';
+import React, { useEffect } from 'react';
+//import usePlanetState from '../hooks/usePlanetState.js';
 import GetVehicleDetails from '../vehicles/vehicle';
 import Timer from '../time/time';
 import './dropdown.css';
@@ -23,7 +23,7 @@ export default function DropDown(props) {
         var value = e.target.value;
         var distance = e.nativeEvent.target.selectedOptions[0].getAttribute("distance");
         if (objDistance[currentsel]) {
-            if (objDistance[currentsel] == distance) {
+            if (objDistance[currentsel] === distance) {
                 changeSel = true;
             } else {
                 changeSel = false;

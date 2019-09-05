@@ -32,7 +32,7 @@ function getVehiclesDetails(props) {
 
         if ((value !== null || value !== "null") && props.objDistance[currentsel] !== "null") {
 
-            if (props.selVehicles[currentsel]) { }
+
             spaceVehicle = props.selVehicles;
             time[currentsel] = remainingTime;
             spaceVehicle[currentsel] = value;
