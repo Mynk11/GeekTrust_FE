@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-//import usePlanetState from '../hooks/usePlanetState.js';
 import GetVehicleDetails from '../vehicles/vehicle';
+import { NUMBER_OF_PLANETS } from '../../config/config';
 import Timer from '../time/time';
 import './dropdown.css';
 var uniqid = require('uniqid');
@@ -11,7 +11,7 @@ export default function DropDown(props) {
     var selected = props.selectePlanetObj || {};
     var objDistance = props.distanceObj || {};
     useEffect(() => {
-        console.log("props from drop==>", props);
+
 
     }, []);
 
@@ -85,7 +85,7 @@ export default function DropDown(props) {
                 {props.option.map(function (obj, i) {
                     //console.log('Obj====>', obj);
 
-                    if (i < 4) {
+                    if (i < NUMBER_OF_PLANETS) {
 
                         return (
                             <div className="col-sm-2 .dropdown" key={uniqid()}>
@@ -158,7 +158,7 @@ export default function DropDown(props) {
 
                 </GetVehicleDetails>
             </div>
-        </div >
+        </div>
     )
 }
 

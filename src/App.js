@@ -10,7 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
 import ErrorBoundary from './components/errorBoundary/errorBondary';
-import { GET_PlANETS, GET_VEHICLES } from './config/config';
+import { GET_PLANETS, GET_VEHICLES } from './config/config';
 function App() {
   const [totalTime, setTotalTime] = useState(0);
   const [distanceObj, setDistanceObj] = useState({});
@@ -24,7 +24,7 @@ function App() {
   const [selVehicles, setselVehicles] = useVehicleState({});
   useEffect(() => {
     Promise.all([
-      fetch(GET_PlANETS),
+      fetch(GET_PLANETS),
       fetch(GET_VEHICLES)
     ]).then((allResponses) => {
       allResponses[0].json().then((planet) => {

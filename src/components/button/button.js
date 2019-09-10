@@ -13,7 +13,7 @@ export default class Button extends Component {
 
     check() {
 
-        if (this.props.vehicles.length < 4) {
+        if (this.props.vehicles.length < NUMBER_OF_PLANETS) {
             this.setState({ href: null })
         }
         else {
@@ -25,7 +25,7 @@ export default class Button extends Component {
     onclick = (e) => {
 
         var token = "";
-        if (this.props.planets.length !== 4 && this.props.vehicles.length !== 4) {
+        if (this.props.planets.length !== NUMBER_OF_PLANETS && this.props.vehicles.length !== NUMBER_OF_PLANETS) {
             this.setState({ result: false })
         }
         else {
@@ -77,7 +77,7 @@ export default class Button extends Component {
             }, (fail) => {
                 console.log("Attempt filed", fail);
             }).catch((err) => {
-                console.log("Find falcone API call failed");
+                console.log("Find falcone API call failed", err);
             })
 
         }
