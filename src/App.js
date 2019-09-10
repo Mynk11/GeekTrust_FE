@@ -10,6 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
 import ErrorBoundary from './components/errorBoundary/errorBondary';
+import { GET_PlANETS, GET_VEHICLES } from './config/config';
 function App() {
   const [totalTime, setTotalTime] = useState(0);
   const [distanceObj, setDistanceObj] = useState({});
@@ -23,16 +24,16 @@ function App() {
   const [selVehicles, setselVehicles] = useVehicleState({});
   useEffect(() => {
     Promise.all([
-      fetch("https://findfalcone.herokuapp.com/planets"),
-      fetch("https://findfalcone.herokuapp.com/vehicles")
+      fetch(GET_PlANETS),
+      fetch(GET_VEHICLES)
     ]).then((allResponses) => {
       allResponses[0].json().then((planet) => {
         setPlanets(planet);
-        console.log("Planets===>", planets);
+
       });
       allResponses[1].json().then((vehicle) => {
         setVehicles(vehicle);
-        console.log("vehicles===>", vehicles);
+
       });
 
     }).catch((err) => {
@@ -107,7 +108,7 @@ function App() {
 
       <Footer>
       </Footer>
-    </div >
+    </div>
   );
 }
 

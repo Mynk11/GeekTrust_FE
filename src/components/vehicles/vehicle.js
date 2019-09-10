@@ -9,7 +9,7 @@ function getVehiclesDetails(props) {
 
     useEffect(() => {
         var timeArr = [];
-        console.log("Vehicle props===>", props);
+
         timeArr = Object.values(props.time);
         if (timeArr.length > 0) {
             props.setTotalTime(timeArr.reduce((sum, num) => { return sum + num }));

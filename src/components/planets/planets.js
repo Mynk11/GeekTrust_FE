@@ -1,13 +1,12 @@
 import React from 'react';
 import DropDown from '../dropdown/dropdown';
 import Loader from '../loader/loader';
+import { NUMBER_OF_PLANETS } from '../../config/config';
 var uniqid = require('uniqid');
 
 function getPlanetsDetails(props) {
 
-
-
-    if (props.planets.length > 0) {
+    if (props.planets.length > NUMBER_OF_PLANETS) {
 
 
         return (

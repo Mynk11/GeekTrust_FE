@@ -21,8 +21,8 @@ export default function Result(props) {
     }
     console.log("Props from Result===>", props.result);
     if (isUndefined(props.result.status)) {
-        console.log("Props from Result=========>", props.result);
-        return <Loader></Loader>
+
+        return <Loader />
     }
 
     else if (props.result.status !== "false") {
@@ -32,8 +32,8 @@ export default function Result(props) {
 
                     <div className="col-sm-12 text-center">
                         <h3>Success! Congratultion on Finding Falcone King Shah is mighty pleased</h3>
-                        <h5>falcone is hiding in <i>{props.result.planet_name}</i> & caught by us {props.result.status}fully</h5>
-                        <div>Time taken : {props.time}</div>
+                        <h5>falcone is hiding in <b>{props.result.planet_name}</b> & caught by us {props.result.status}fully</h5>
+                        <div>Time taken : <b>{props.time}</b></div>
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@ export default function Result(props) {
                     <div className="col-sm-12 text-center">
 
                         <h4>We failed to find Falcone King shah is going to kill us!!</h4>
-                        <div>Time taken:{props.time}</div>
+                        <div>Time taken:<b>{props.time}</b></div>
                     </div>
 
                 </div>

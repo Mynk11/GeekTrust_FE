@@ -1,3 +1,6 @@
+
+it's a react app creaed using create react app .Run npm install from the root directory of the project to see it working on address http://localhost:3000/.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

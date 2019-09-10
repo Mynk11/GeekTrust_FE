@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./button.css";
-//import Result from '../result/result';
+import { TOKEN_API, FALCONE_API, NUMBER_OF_PLANETS } from '../../config/config';
 import { Link } from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ export default class Button extends Component {
     }
 
     check() {
-        console.log("Check is called", this.props);
+
         if (this.props.vehicles.length < 4) {
             this.setState({ href: null })
         }
@@ -23,14 +23,14 @@ export default class Button extends Component {
     }
 
     onclick = (e) => {
-        console.log("this=====>", this.props);
+
         var token = "";
         if (this.props.planets.length !== 4 && this.props.vehicles.length !== 4) {
             this.setState({ result: false })
         }
         else {
             this.setState({ result: true });
-            fetch('https://findfalcone.herokuapp.com/token', {
+            fetch(TOKEN_API, {
                 "method": "POST",
                 "headers": {
                     'Accept': 'application/json',
@@ -43,8 +43,8 @@ export default class Button extends Component {
                     console.log("Data is", data);
                     token = data.token;
                     this.setState({ data: '/result' });
-                    //console.log("Sel is::;", sel);
-                    fetch("https://findfalcone.herokuapp.com/find", {
+
+                    fetch(FALCONE_API, {
                         "method": "POST",
                         "headers": {
                             'Accept': 'application/json',
@@ -57,7 +57,8 @@ export default class Button extends Component {
                             "vehicle_names": this.props.vehicles
                         })
                     }).then(res => {
-                        console.log("Response", res.ok, res.json().then(data => {
+
+                        res.json().then(data => {
                             console.log('Data  is--', data);
 
                             if (res.ok) {
@@ -66,7 +67,7 @@ export default class Button extends Component {
                             } else {
                                 alert(`${data.error}`);
                             }
-                        }));
+                        });
                     }).catch((err) => {
                         console.log(`Error from find Api ${err}`);
                     })
@@ -83,18 +84,17 @@ export default class Button extends Component {
     }
 
     render() {
-        // console.log("Button props=========>", this.props);
         return (
 
             <div className={'user row text-center mt-5 may'}>
                 <button onMouseEnter={() => { this.check() }}
-                    disabled={this.props.planets.length < 4 ? true : false}
+                    disabled={this.props.planets.length < NUMBER_OF_PLANETS ? true : false}
                     onClick={() => {
                         this.onclick();
                     }} className="user btn btn-submit mt-5" style={{ border: "1px solid grey" }}>
 
                     <Link className="font-weight-bolder color"
-                        to={((this.props.planets.length < 4) && (this.props.vehicles.length < 4)) ? null : this.state.href}>
+                        to={((this.props.planets.length < NUMBER_OF_PLANETS) && (this.props.vehicles.length < NUMBER_OF_PLANETS)) ? null : this.state.href}>
                         Find falcone!
                     </Link>
 

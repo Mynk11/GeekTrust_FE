@@ -1,7 +1,6 @@
 import React from 'react';
 import './header.css'
 function Header(props) {
-    //console.log("props=============>", props.props.status);
 
     return (
         <div className="container-fluid">
