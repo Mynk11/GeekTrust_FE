@@ -59,7 +59,7 @@ function getVehiclesDetails(props) {
                 <div key={uniqid()} className="col-sm-2" style={{ visibility: props.selectedPlanet.includes("country" + index) ? "block" : "hidden" }}>
                     {props.vehicles.map((key, i) => {
                         //console.log(props.selectedPlanet.includes(key.name), props.selVehicles["country" + index], key.name === props.selVehicles["country" + index]);
-                        console.log(props.selVehicles["country" + index] === key.name, props.objDistance["country" + index] > 0, key.name);
+                        //console.log(props.selVehicles["country" + index] === key.name, props.objDistance["country" + index] > 0, key.name);
                         return (<div
                             className={props.selVehicles["country" + index] !== key.name && props.objDistance["country" + index] > 0 && props.selectedVehcle.includes(key.name) ? "none" : "display"}
                             key={uniqid()}>

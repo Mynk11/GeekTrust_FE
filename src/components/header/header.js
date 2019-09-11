@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './header.css'
 function Header(props) {
 
@@ -12,7 +13,7 @@ function Header(props) {
 
                 <div className="col-sm-3 pl-2">
                     <span className=" text-right font-weight-bolder pr-3">
-                        <a className="color" aria-current="page" href="/">Reset</a>
+                        <Link className="color" to="/" aria-current="page" onClick={props.setAllNull}>Reset</Link>
                     </span>
                     <span className="text-center"> | </span>
 

@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState } from 'react';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import GetPlanetsDetails from './components/planets/planets';
 import SearchButton from './components/button/button';
 import usePlanetState from './components/hooks/usePlanetState';
 import useVehicleState from './components/hooks/useVehiclHook';
-import { BrowserRouter, Route } from 'react-router-dom';
 import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
 import ErrorBoundary from './components/errorBoundary/errorBondary';
-import { GET_PLANETS, GET_VEHICLES } from './config/config';
+import GetData from './components/getData/getData';
+import { BrowserRouter, Route } from 'react-router-dom';
+import './App.css';
+
 function App() {
   const [totalTime, setTotalTime] = useState(0);
   const [distanceObj, setDistanceObj] = useState({});
@@ -22,34 +23,25 @@ function App() {
   const [result, setResult] = useState({});
   const [time, setTime] = useState({});
   const [selVehicles, setselVehicles] = useVehicleState({});
-  useEffect(() => {
-    Promise.all([
-      fetch(GET_PLANETS),
-      fetch(GET_VEHICLES)
-    ]).then((allResponses) => {
-      allResponses[0].json().then((planet) => {
-        setPlanets(planet);
 
-      });
-      allResponses[1].json().then((vehicle) => {
-        setVehicles(vehicle);
+  const setAllNull = () => {
+    setTotalTime(0);
+    setSelectedPlanets([])
+    setSelectedVehicles([])
+    setDistanceObj({});
+    setTime({});
+    setselVehicles({});
+    setSelectePlanetObj({});
+    setResult({});
 
-      });
-
-    }).catch((err) => {
-      console.log(err);
-    });
-
-  }, []);
+  }
 
 
   return (
     <div className="App container-fluid">
-
-      <Header props={result}></Header>
-
-
+      <GetData setVehicles={setVehicles} setPlanets={setPlanets} ></GetData>
       <BrowserRouter>
+        <Header setAllNull={setAllNull}></Header>
         <Route path="/" exact component={() => {
           return (
             <>
@@ -88,19 +80,10 @@ function App() {
         </Route>
 
         <ErrorBoundary>
-          <Route exact path="/result" component={() => <Result
-
-            totalTime={totalTime}
-            setTotalTime={setTotalTime}
-            selectedPlanet={setSelectedPlanets}
-            selectedVehicles={setSelectedVehicles}
-            setTime={setTime}
-            setselVehicles={setselVehicles}
-            setSelectePlanetObj={setSelectePlanetObj}
-            setDistanceObj={setDistanceObj}
-            setResult={setResult}
+          <Route path="/result" component={() => <Result
+            setAllNull={setAllNull}
             time={totalTime}
-            result={result}>{result}</Result>}></Route>
+            result={result}></Result>}></Route>
         </ErrorBoundary>
         <Footer>
         </Footer>

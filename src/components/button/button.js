@@ -48,8 +48,7 @@ export default class Button extends Component {
                         "method": "POST",
                         "headers": {
                             'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                            'Content-Type': 'application/json'
                         },
                         "body": JSON.stringify({
                             "token": token,
@@ -58,7 +57,7 @@ export default class Button extends Component {
                         })
                     }).then(res => {
 
-                        res.json().then(data => {
+                        res.clone().json().then(data => {
                             console.log('Data  is--', data);
 
                             if (res.ok) {
@@ -70,10 +69,8 @@ export default class Button extends Component {
                         });
                     }).catch((err) => {
                         console.log(`Error from find Api ${err}`);
-                    })
-
+                    });
                 });
-                return suc.json();
             }, (fail) => {
                 console.log("Attempt filed", fail);
             }).catch((err) => {
