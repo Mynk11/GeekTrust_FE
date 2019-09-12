@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import GetVehicleDetails from '../vehicles/vehicle';
 import { NUMBER_OF_PLANETS } from '../../config/config';
 import Timer from '../time/time';
@@ -10,10 +10,7 @@ export default function DropDown(props) {
     var countryVal = props.selectedPlanets || [];
     var selected = props.selectePlanetObj || {};
     var objDistance = props.distanceObj || {};
-    useEffect(() => {
 
-
-    }, []);
 
     const changeSel = (e) => {
         var timeObj = props.time || {};
@@ -32,46 +29,31 @@ export default function DropDown(props) {
             changeSel = true;
         }
         if (value !== "select" && changeSel) {
-
             selected[currentsel] = value;
             countryVal = Object.values(selected);
             objDistance[currentsel] = distance;
-            props.selectedPlanet(countryVal);
-            props.setSelectePlanetObj(selected);
-            props.setDistanceObj(objDistance);
+
         } else {
 
             if (value !== "select") {
-                vehicle = props.selVehicles;
-                delete vehicle[currentsel];
-                props.setselVehicles(vehicle);
                 selected[currentsel] = value;
-                countryVal = Object.values(selected);
                 objDistance[currentsel] = distance;
-                props.selectedPlanet(countryVal);
-                props.setSelectePlanetObj(selected);
-                props.setDistanceObj(objDistance);
-                props.selectedVehicles(Object.values(props.selVehicles));
-                delete timeObj[currentsel];
-                props.setTime(timeObj);
-
             }
             else {
                 delete selected[currentsel];
                 delete objDistance[currentsel];
-                vehicle = props.selVehicles;
-                delete vehicle[currentsel];
-                props.setselVehicles(vehicle);
-                countryVal = Object.values(selected);
-                props.selectedPlanet(countryVal);
-                props.selectedVehicles(Object.values(props.selVehicles));
-                props.setSelectePlanetObj(selected);
-                props.setDistanceObj(objDistance);
-                delete timeObj[currentsel];
-                props.setTime(timeObj);
             }
+            vehicle = props.selVehicles;
+            delete vehicle[currentsel];
+            props.setselVehicles(vehicle);
+            countryVal = Object.values(selected);
+            delete timeObj[currentsel];
+            props.setTime(timeObj);
         }
-
+        props.selectedPlanet(countryVal);
+        props.selectedVehicles(Object.values(props.selVehicles));
+        props.setSelectePlanetObj(selected);
+        props.setDistanceObj(objDistance);
 
     }
 
@@ -83,8 +65,6 @@ export default function DropDown(props) {
             <div className="row" key={uniqid()}>
                 <div className="col-sm-1" key={uniqid()}></div>
                 {props.option.map(function (obj, i) {
-                    //console.log('Obj====>', obj);
-
                     if (i < NUMBER_OF_PLANETS) {
 
                         return (
@@ -108,12 +88,6 @@ export default function DropDown(props) {
                                             </option>)
                                     })}
                                 </select>
-
-
-
-
-
-
 
                             </div>
 

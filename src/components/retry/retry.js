@@ -11,7 +11,7 @@ export default function Failure(props) {
                 <div className="col-sm-12 text-center">
 
                     <h4>We failed to find Falcone King shah is going to kill us!!</h4>
-                    <div>Time taken:<b>{props.time}</b></div>
+                    <div>Time taken : <b>{props.time}</b></div>
                 </div>
 
             </div>
