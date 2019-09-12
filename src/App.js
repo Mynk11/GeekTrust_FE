@@ -9,6 +9,8 @@ import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
 import ErrorBoundary from './components/errorBoundary/errorBondary';
 import GetData from './components/getData/getData';
+import Token from './components/getData/token';
+import FindFalcone from './components/getData/findFalApi';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
@@ -23,7 +25,7 @@ function App() {
   const [result, setResult] = useState({});
   const [time, setTime] = useState({});
   const [selVehicles, setselVehicles] = useVehicleState({});
-
+  const [token, setToken] = useState();
   const setAllNull = () => {
     setTotalTime(0);
     setSelectedPlanets([])
@@ -39,9 +41,11 @@ function App() {
 
   return (
     <div className="App container-fluid">
+
       <GetData setVehicles={setVehicles} setPlanets={setPlanets} ></GetData>
       <BrowserRouter>
         <Header setAllNull={setAllNull}></Header>
+        {selectedVehicles.length === 4 ? <Token vehicles={vehicles} setToken={setToken}></Token> : ""}
         <Route path="/" exact component={() => {
           return (
             <>
@@ -70,7 +74,10 @@ function App() {
                   planets={selectedPlanets}
                   vehicles={selectedVehicles}
                   setResult={setResult}
+                  token={token}
                 >
+
+
                 </SearchButton>
               </ErrorBoundary>
             </>
@@ -83,7 +90,9 @@ function App() {
           <Route path="/result" component={() => <Result
             setAllNull={setAllNull}
             time={totalTime}
-            result={result}></Result>}></Route>
+            result={result}
+            token={token}
+          ></Result>}></Route>
         </ErrorBoundary>
         <Footer>
         </Footer>

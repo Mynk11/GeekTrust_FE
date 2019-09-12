@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import "./button.css";
 import { TOKEN_API, FALCONE_API, NUMBER_OF_PLANETS } from '../../config/config';
 import { Link } from 'react-router-dom';
+import "./button.css";
 
 
 export default class Button extends Component {
@@ -29,54 +29,61 @@ export default class Button extends Component {
             this.setState({ result: false })
         }
         else {
+
+            console.log("props from button===>", this.props);
             this.setState({ result: true });
-            fetch(TOKEN_API, {
-                "method": "POST",
-                "headers": {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                "body": ""
-            }).then((suc) => {
-                suc.json().then((data) => {
-                    console.log("Data is", data);
-                    token = data.token;
-                    this.setState({ data: '/result' });
+            this.setState({
+                data: '/result'
+            });
 
-                    fetch(FALCONE_API, {
-                        "method": "POST",
-                        "headers": {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        "body": JSON.stringify({
-                            "token": token,
-                            "planet_names": this.props.planets,
-                            "vehicle_names": this.props.vehicles
-                        })
-                    }).then(res => {
 
-                        res.clone().json().then(data => {
-                            console.log('Data  is--', data);
+            if (this.props.token) {
+                fetch(TOKEN_API, {
+                    "method": "POST",
+                    "headers": {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    "body": ""
+                }).then((suc) => {
+                    suc.json().then((data) => {
+                        console.log("Data is");
+                        token = this.props.token || data.token;
 
-                            if (res.ok) {
 
-                                this.props.setResult(data);
-                            } else {
-                                alert(`${data.error}`);
-                            }
+                        fetch(FALCONE_API, {
+                            "method": "POST",
+                            "headers": {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            "body": JSON.stringify({
+                                "token": this.props.token,
+                                "planet_names": this.props.planets,
+                                "vehicle_names": this.props.vehicles
+                            })
+                        }).then(res => {
+
+                            res.clone().json().then(data => {
+                                console.log('Data  is--', data);
+
+                                if (res.ok) {
+
+                                    this.props.setResult(data);
+                                } else {
+                                    alert(`${data.error}`);
+                                }
+                            });
+                        }).catch((err) => {
+                            console.log(`Error from find Api ${err}`);
                         });
-                    }).catch((err) => {
-                        console.log(`Error from find Api ${err}`);
                     });
-                });
-            }, (fail) => {
-                console.log("Attempt filed", fail);
-            }).catch((err) => {
-                console.log("Find falcone API call failed", err);
-            })
-
+                }, (fail) => {
+                    console.log("Attempt filed", fail);
+                }).catch((err) => {
+                    console.log("Find falcone API call failed", err);
+                })
+            }
         }
     }
 
