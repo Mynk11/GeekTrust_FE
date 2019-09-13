@@ -29,7 +29,7 @@ function App() {
   const [link, setLink] = useState();
 
 
-  /* Method for resetting the state  */
+  /* Method to reset the state */
   const setAllNull = () => {
     setTotalTime(0);
     setSelectedPlanets([])
