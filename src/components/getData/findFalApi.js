@@ -3,7 +3,7 @@ import { FALCONE_API } from '../../config/config';
 export default function GetFindResult(props) {
 
     useEffect(() => {
-
+        console.log("FIND_API====>", props);
         fetch(FALCONE_API, {
             "method": "POST",
             "headers": {
@@ -18,11 +18,11 @@ export default function GetFindResult(props) {
         }).then(res => {
 
             res.clone().json().then(data => {
-                console.log('Data  is--', data);
+                console.log('Data  is------>', data);
 
                 if (res.ok) {
 
-                    this.props.setResult(data);
+                    props.setResult(data);
                 } else {
                     alert(`${data.error}`);
                 }
@@ -30,5 +30,6 @@ export default function GetFindResult(props) {
         }).catch((err) => {
             console.log(`Error from find Api ${err}`);
         });
-    })
+    }, [props.token]);
+    return null;
 }

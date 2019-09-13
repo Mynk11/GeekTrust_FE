@@ -26,6 +26,8 @@ function App() {
   const [time, setTime] = useState({});
   const [selVehicles, setselVehicles] = useVehicleState({});
   const [token, setToken] = useState();
+  const [link, setLink] = useState();
+
   const setAllNull = () => {
     setTotalTime(0);
     setSelectedPlanets([])
@@ -45,7 +47,12 @@ function App() {
       <GetData setVehicles={setVehicles} setPlanets={setPlanets} ></GetData>
       <BrowserRouter>
         <Header setAllNull={setAllNull}></Header>
-        {selectedVehicles.length === 4 ? <Token vehicles={vehicles} setToken={setToken}></Token> : ""}
+        {selectedVehicles.length === 4 ? <Token setLink={setLink} vehicles={vehicles} setToken={setToken}></Token> : ""}
+        {token ? <FindFalcone token={token}
+          planets={selectedPlanets}
+
+          vehicles={selectedVehicles}
+          setResult={setResult}></FindFalcone> : ""}
         <Route path="/" exact component={() => {
           return (
             <>
@@ -75,6 +82,7 @@ function App() {
                   vehicles={selectedVehicles}
                   setResult={setResult}
                   token={token}
+                  link={link}
                 >
 
 
@@ -92,6 +100,7 @@ function App() {
             time={totalTime}
             result={result}
             token={token}
+            setLink={setLink}
           ></Result>}></Route>
         </ErrorBoundary>
         <Footer>

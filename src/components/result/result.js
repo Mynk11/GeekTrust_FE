@@ -12,9 +12,11 @@ export default function Result(props) {
     }
 
     else if (props.result.status !== "false") {
+        props.setLink();
         return <Success result={props.result} time={props.time} setAllNull={props.setAllNull} />
     }
     else {
+        props.setLink();
         return <Retry result={props.result} time={props.time} setAllNull={props.setAllNull} />
     }
 }

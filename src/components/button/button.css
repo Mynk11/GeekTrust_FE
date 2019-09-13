@@ -1,24 +1,8 @@
-button:hover{
-  background: #3B5C76;
+.success{
+  color:green;
 }
-button.user{
-    margin:auto;
-    display:block;
-  }
-  
-  /* BUTTON STYLES */
-  button.user {
-    padding:16px 32px;
-    font-family:helvetica;
-    font-size:16px;
-    font-weight:100;
-    color:#fff;
-    background: rgb(98, 231, 127);
-    border:0;
-    font-weight:100;
-  }
-  button.user:hover{
-    background: #4E9CAF;
-    color:rgb(71, 255, 111);
-  }
-  /* END OF BUTTON STYLES */
+
+
+.background{
+  background-color:aliceblue !important;
+}

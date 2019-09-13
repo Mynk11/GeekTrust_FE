@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { TOKEN_API } from '../../config/config';
-import { NUMBER_OF_PLANETS } from '../../config/config';
 
 export default function GetToken(props) {
 
@@ -18,6 +17,7 @@ export default function GetToken(props) {
                 console.log("Token====>", data.token);
 
                 props.setToken(data.token);
+                props.setLink("/result");
             });
 
         }, err => {
@@ -26,7 +26,7 @@ export default function GetToken(props) {
             console.log("From catch=========>", err);
             alert(err);
         });
-        console.log("TOken Api is===========>", TOKEN_API);
     }, []);
+
     return null;
 }

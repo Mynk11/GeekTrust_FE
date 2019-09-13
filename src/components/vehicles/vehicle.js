@@ -12,9 +12,6 @@ function getVehiclesDetails(props) {
     var distanceObject = props.objDistance || {};
 
     useEffect(() => {
-
-        console.log("Vehicles=============>", props);
-
         var timeArr = [];
         timeArr = Object.values(props.time);
         if (timeArr.length > 0) {
