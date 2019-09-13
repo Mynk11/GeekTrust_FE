@@ -1,8 +1,6 @@
 import React from 'react';
-import GetVehicleDetails from '../vehicles/vehicle';
 import { NUMBER_OF_PLANETS } from '../../config/config';
 import Timer from '../time/time';
-import './dropdown.css';
 var uniqid = require('uniqid');
 
 
@@ -11,7 +9,7 @@ export default function DropDown(props) {
     var selected = props.selectePlanetObj || {};
     var objDistance = props.distanceObj || {};
 
-
+    //Checkin Whether planet is  selected or not to meet the requirement 
     const changeSel = (e) => {
         var timeObj = props.time || {};
         var vehicle = "";
@@ -61,29 +59,24 @@ export default function DropDown(props) {
 
 
     return (
-        <div>
-            <div className="row" key={uniqid()}>
-                <div className="col-sm-1" key={uniqid()}></div>
+        <>
+            <div className="row pt-2" key={uniqid()}>
+                <div className="col-sm-1"></div>
                 {props.option.map(function (obj, i) {
                     if (i < NUMBER_OF_PLANETS) {
 
                         return (
-                            <div className="col-sm-2 .dropdown" key={uniqid()}>
-                                <div style={{ textAlign: "center" }}><b>Destination {i + 1}</b></div>
+                            <div className="col-sm-2" key={uniqid()}>
+                                <div className="text-center"><b>Destination {i + 1}</b></div>
                                 <select
-
                                     value={(selected.hasOwnProperty("country" + i) && selected["country" + i] !== "null") ? selected["country" + i] : ""}
                                     onChange={(e) => { changeSel(e) }}
-                                    typeof="select" className="form-control dropdown-toggle" aria-labelledby="dropdownMenuButton" name={"country" + i} placeholder="Country">
+                                    typeof="select"
+                                    className="form-control dropdown" aria-labelledby="dropdownMenuButton" name={"country" + i} placeholder="Country">
                                     <option value="select">Select</option>
                                     {props.option.map((key) => {
                                         return (
-                                            <option
-                                                distance={key.distance}
-                                                value={key.name}
-                                                disabled={countryVal.includes(key.name) ? true : false}
-                                                key={uniqid()}
-                                            >
+                                            <option distance={key.distance} value={key.name} disabled={countryVal.includes(key.name) ? true : false} key={uniqid()}>
                                                 {key.name}
                                             </option>)
                                     })}
@@ -101,38 +94,15 @@ export default function DropDown(props) {
                 })}
 
 
-
+                {/* Timer component */}
                 <div className="col-sm-2">
 
                     <Timer Time={props.totalTime}></Timer>
                 </div>
 
-
-
-
             </div>
 
-            <div className="row pt-2">
-                <div className="col-sm-1"></div>
-                <GetVehicleDetails
-                    totalTime={props.totalTime}
-                    setTotalTime={props.setTotalTime}
-                    time={props.time}
-                    setTime={props.setTime}
-                    objDistance={objDistance}
-                    key={uniqid()}
-                    vehicles={props.vehicles}
-                    selectedVehcle={props.selectedVehcle}
-                    selectedVehicles={props.selectedVehicles}
-                    selectedPlanet={Object.keys(selected)}
-                    selVehicles={props.selVehicles}
-                    setselVehicles={props.setselVehicles}
-
-                >
-
-                </GetVehicleDetails>
-            </div>
-        </div>
+        </>
     )
 }
 

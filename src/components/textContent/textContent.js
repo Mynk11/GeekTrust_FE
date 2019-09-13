@@ -6,14 +6,13 @@ export default function TextContet(props) {
 
     return (
         <>
-            <div rowSpan="3"
-                style={{ textAlign: "center", fontSize: "20px" }}><b>Finding Falcoin!</b>
-            </div>
+            <h2 className="text-center">Finding Falcoin!</h2>
+
 
             <div >
                 <div className="col-12 font-weight-bold" style={{ textAlign: "center", fontSize: "16px" }}>
-                    Select which planet you want to search in
-            </div>
+                    <h6>Select which planet you want to search in</h6>
+                </div>
             </div>
         </>
     )

@@ -5,12 +5,9 @@ import "./button.css";
 
 export default function Button(props) {
 
-
-
     return (
 
-        <div className={'row text-center mt-auto'}>
-
+        <div className={'row text-center btnMargin'}>
             <div className="col-sm-12 text-center">
                 <Link className={"btn btn-submit  font-weight-bolder " + (props.link === "/result" ? "background" : "color")}
                     to={props.link}
@@ -19,9 +16,6 @@ export default function Button(props) {
                     Find falcone!
                     </Link>
             </div>
-
-
-
         </div>
 
     )

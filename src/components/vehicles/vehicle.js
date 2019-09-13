@@ -3,8 +3,8 @@ import Loader from '../loader/loader';
 import './vehicle.css';
 
 var uniqid = require('uniqid');
-function getVehiclesDetails(props) {
 
+function getVehiclesDetails(props) {
     var time = props.time || {};
     var values = props.selectedVehcle || [];
     var spaceVehicle = props.selVehicles || {};
@@ -20,7 +20,7 @@ function getVehiclesDetails(props) {
             props.setTotalTime(0);
         }
     })
-
+    /* providing functionality to click on vehicle label */
     const ForLabelClick = (e) => {
 
         var disabled = e.target.getAttribute("disabled");
@@ -32,7 +32,7 @@ function getVehiclesDetails(props) {
             changeRadio(e);
         }
     }
-
+    /* onClick functionality of radio button */
     const changeRadio = (e) => {
         var currentsel = e.currentTarget.name || e.target.getAttribute("name");
         var value = e.target.value || e.target.getAttribute("value");
@@ -63,15 +63,15 @@ function getVehiclesDetails(props) {
                             <input
                                 speed={key.speed}
                                 maxdistance={key.max_distance}
-                                defaultChecked=
-                                {(spaceVehicle.hasOwnProperty("country" + index)
-                                    && key.name === spaceVehicle["country" + index]) ? true : false}
-
-
+                                defaultChecked={(spaceVehicle.hasOwnProperty("country" + index) && key.name === spaceVehicle["country" + index]) ? true : false}
                                 disabled={values.includes(key.name) || key.max_distance < distanceObject["country" + index]}
                                 onChange={(e) => {
                                     changeRadio(e)
-                                }} type="radio" name={"country" + index} key={uniqid()} value={key.name} />
+                                }}
+                                type="radio"
+                                name={"country" + index}
+                                key={uniqid()}
+                                value={key.name} />
 
                             <label
                                 disabled={values.includes(key.name) || key.max_distance < distanceObject["country" + index]}

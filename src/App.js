@@ -28,6 +28,8 @@ function App() {
   const [token, setToken] = useState();
   const [link, setLink] = useState();
 
+
+  /* Method for resetting the state  */
   const setAllNull = () => {
     setTotalTime(0);
     setSelectedPlanets([])
@@ -43,21 +45,24 @@ function App() {
 
   return (
     <div className="App container-fluid">
-
+      {/* Component for fetching data calling plants and vehicles api*/}
       <GetData setVehicles={setVehicles} setPlanets={setPlanets} ></GetData>
-      <BrowserRouter>
-        <Header setAllNull={setAllNull}></Header>
-        {selectedVehicles.length === 4 ? <Token setLink={setLink} vehicles={vehicles} setToken={setToken}></Token> : ""}
-        {token ? <FindFalcone token={token}
-          planets={selectedPlanets}
 
-          vehicles={selectedVehicles}
-          setResult={setResult}></FindFalcone> : ""}
+
+      <BrowserRouter>
+        {/* Component for Header */}
+        <Header setAllNull={setAllNull}></Header>
+        {/* Component for creatin token */}
+        {selectedVehicles.length === 4 ? <Token setLink={setLink} vehicles={vehicles} setToken={setToken}></Token> : ""}
+        {/* Component for calling find falcone API */}
+        {token ? <FindFalcone token={token} planets={selectedPlanets} vehicles={selectedVehicles} setResult={setResult} /> : ""}
         <Route path="/" exact component={() => {
           return (
             <>
+              {/* Component  for static text  */}
               <TextContent props={result}></TextContent>
               <ErrorBoundary>
+                {/* Container component for generaing planets dropdown and vehicles option */}
                 <GetPlanetsDetails
                   totalTime={totalTime}
                   setTotalTime={setTotalTime}
@@ -77,16 +82,11 @@ function App() {
                   setDistanceObj={setDistanceObj}
                 ></GetPlanetsDetails>
 
-                <SearchButton
-                  planets={selectedPlanets}
-                  vehicles={selectedVehicles}
-                  setResult={setResult}
-                  token={token}
-                  link={link}
-                >
+                {/* Button component  */}
+                <SearchButton link={link} />
 
 
-                </SearchButton>
+
               </ErrorBoundary>
             </>
           )
@@ -95,18 +95,18 @@ function App() {
         </Route>
 
         <ErrorBoundary>
+          {/* Result continer it has two compnent one for success and other for retry */}
           <Route path="/result" component={() => <Result
             setAllNull={setAllNull}
             time={totalTime}
             result={result}
-            token={token}
             setLink={setLink}
           ></Result>}></Route>
         </ErrorBoundary>
         <Footer>
         </Footer>
       </BrowserRouter>
-
+      {/* Static footer component */}
       <Footer>
       </Footer>
     </div>
