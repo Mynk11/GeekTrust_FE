@@ -20,7 +20,7 @@ export default function GetFindResult(props) {
         }).then(res => {
 
             res.clone().json().then(data => {
-                console.log('Data  is------>', data);
+                
 
                 if (res.ok) {
 
