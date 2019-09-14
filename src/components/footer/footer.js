@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import './footer.css'
 var style = {
     backgroundColor: "#F8F8F8",
     borderTop: "none",
@@ -22,8 +21,6 @@ var phantom = {
 
 
 class Footer extends PureComponent {
-
-
 
     render() {
         return (

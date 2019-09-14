@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { TOKEN_API } from '../../config/config';
+import { TOKEN_API } from '../../.env/config';
 
 export default function GetToken(props) {
 

@@ -1,6 +1,8 @@
 import React from 'react';
-import { NUMBER_OF_PLANETS } from '../../config/config';
+import { NUMBER_OF_PLANETS } from '../../.env/config';
 import Timer from '../time/time';
+import ErrorBoundary from '../errorBoundary/errorBondary';
+
 var uniqid = require('uniqid');
 
 
@@ -96,8 +98,9 @@ export default function DropDown(props) {
 
                 {/* Timer component */}
                 <div className="col-sm-2">
-
-                    <Timer Time={props.totalTime}></Timer>
+                    <ErrorBoundary>
+                        <Timer Time={props.totalTime}></Timer>
+                    </ErrorBoundary>
                 </div>
 
             </div>

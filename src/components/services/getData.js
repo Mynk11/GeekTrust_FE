@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-
-import { GET_PLANETS, GET_VEHICLES } from '../../config/config';
+import { GET_PLANETS, GET_VEHICLES } from '../../.env/config';
 export default function GetData(props) {
 
     useEffect(() => {

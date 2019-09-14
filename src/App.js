@@ -8,9 +8,9 @@ import useVehicleState from './components/hooks/useVehiclHook';
 import Result from './components/result/result';
 import TextContent from './components/textContent/textContent';
 import ErrorBoundary from './components/errorBoundary/errorBondary';
-import GetData from './components/getData/getData';
-import Token from './components/getData/token';
-import FindFalcone from './components/getData/findFalApi';
+import GetData from './components/services/getData';
+import Token from './components/services/token';
+import FindFalcone from './components/services/findFalApi';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
@@ -47,8 +47,6 @@ function App() {
     <div className="App container-fluid">
       {/* Component for fetching data calling plants and vehicles api*/}
       <GetData setVehicles={setVehicles} setPlanets={setPlanets} ></GetData>
-
-
       <BrowserRouter>
         {/* Component for Header */}
         <Header setAllNull={setAllNull}></Header>
@@ -96,19 +94,16 @@ function App() {
 
         <ErrorBoundary>
           {/* Result continer it has two compnent one for success and other for retry */}
-          <Route path="/result" component={() => <Result
-            setAllNull={setAllNull}
-            time={totalTime}
-            result={result}
-            setLink={setLink}
-          ></Result>}></Route>
+          <Route path="/result" component={() =>
+            <Result setAllNull={setAllNull} time={totalTime} result={result} setLink={setLink} />}>
+          </Route>
         </ErrorBoundary>
-        <Footer>
-        </Footer>
+
       </BrowserRouter>
       {/* Static footer component */}
-      <Footer>
-      </Footer>
+      <ErrorBoundary>
+        <Footer></Footer>
+      </ErrorBoundary>
     </div>
   );
 }

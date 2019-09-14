@@ -15,9 +15,10 @@ class ErrorBoundary extends Component {
     }
     render() {
         if (this.state.hasError) {
-            return <h2 className="text-center pt-5">Try Again please</h2>
+            return <h2 className="text-center pt-5">Something Went Wrong!!</h2>
+        } else {
+            return this.props.children
         }
-        return this.props.children
     }
 }
 export default ErrorBoundary

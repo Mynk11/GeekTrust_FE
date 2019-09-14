@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { FALCONE_API } from '../../config/config';
+import { FALCONE_API } from '../../.env/config';
 
 
 export default function GetFindResult(props) {

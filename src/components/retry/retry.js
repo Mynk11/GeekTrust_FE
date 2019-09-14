@@ -5,7 +5,7 @@ export default function Failure(props) {
 
     return (
         <>
-            <div className="row text-center">
+            <div className="row text-center" style={{ fontFamily: "cursive" }}>
 
                 <div className="col-sm-12 text-danger">
 
@@ -16,8 +16,7 @@ export default function Failure(props) {
             </div>
             <div className="row pt-3">
                 <div className="col-sm-12 text-center">
-                    {/*                     <Link to="/" className="btn btn-submit  font-weight-bolder background" onClick={() => { props.setAllNull() }}>Try Again</Link>
- */}                    <Button link={"/"} onclick={props.setAllNull}>Try Again!</Button>
+                    <Button link={"/"} onclick={props.setAllNull}>Try Again!</Button>
                 </div>
             </div>
         </>
