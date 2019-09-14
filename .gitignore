@@ -10,7 +10,7 @@
 /public/robots.txt
 # testing
 /coverage
-
+/src/Test/__snapshots__
 # production
 /build
 robots.txt
