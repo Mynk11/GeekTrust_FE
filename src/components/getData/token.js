@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { TOKEN_API } from '../../config/config';
 
 export default function GetToken(props) {
@@ -14,8 +14,6 @@ export default function GetToken(props) {
             "body": ""
         }).then((suc) => {
             suc.json().then((data) => {
-                console.log("Token====>", data.token);
-
                 props.setToken(data.token);
                 props.setLink("/result");
             });
@@ -23,7 +21,7 @@ export default function GetToken(props) {
         }, err => {
             alert(`${err}`);
         }).catch((err) => {
-            console.log("From catch=========>", err);
+
             alert(err);
         });
     }, []);

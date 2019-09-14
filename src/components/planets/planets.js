@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import DropDown from '../dropdown/dropdown';
 import Loader from '../loader/loader';
 import { NUMBER_OF_PLANETS } from '../../config/config';

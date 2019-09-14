@@ -22,7 +22,7 @@ export default function GetData(props) {
         }).catch((err) => {
             console.log(err);
         });
-        console.log("Log Data is called===>");
+
     }, []);
 
     return null;

@@ -4,17 +4,17 @@ import "./button.css";
 
 
 export default function Button(props) {
-
     return (
 
         <div className={'row text-center btnMargin'}>
             <div className="col-sm-12 text-center">
-                <Link className={"btn btn-submit  font-weight-bolder " + (props.link === "/result" ? "background" : "color")}
+                <Link onClick={props.onclick}
+                    className={"btn btn-submit  font-weight-bolder " + (props.link === "/result" ? "background" : "color")}
                     to={props.link}
                     style={{ "border": "1px solid ghostWhite" }}
                 >
-                    Find falcone!
-                    </Link>
+                    {props.children ? props.children : "Find falcone!"}
+                </Link>
             </div>
         </div>
 

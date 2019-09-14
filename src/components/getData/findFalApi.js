@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FALCONE_API } from '../../config/config';
+
+
 export default function GetFindResult(props) {
 
     useEffect(() => {
-        console.log("FIND_API====>", props);
+
         fetch(FALCONE_API, {
             "method": "POST",
             "headers": {
